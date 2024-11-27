@@ -1,0 +1,29 @@
+name: Project Tutor
+
+on:
+  push:
+    branches:
+      - tutor
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18.x'
+
+    - name: Install dependencies
+      run: |
+        cd client
+        npm install
+
+    - name: Build Angular project
+      run: |
+        cd client
+        npm run build 
