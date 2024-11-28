@@ -17,7 +17,7 @@
 ## Installation
 
 1. Clone the repository:  
-   `git clone https://github.com/your-username/tutorme.git`
+   `git clone https://github.com/shabeelashraf5/TutorMe.git`
 
 2. Install dependencies:
    - For backend: `npm install`
