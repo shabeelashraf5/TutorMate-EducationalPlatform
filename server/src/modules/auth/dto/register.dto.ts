@@ -13,10 +13,23 @@ export class RegisterDto {
     @IsEmail()
     @IsNotEmpty()
     email: string
-    
+
     @IsString()
     @IsNotEmpty()
     @MinLength(6)
     password: string
+
+    @IsString()
+    @IsNotEmpty()
+    @MinLength(6)
+    repeat_password: string
+    
+    @IsString()
+    @IsNotEmpty()
+    phone: number
+
+    @IsString()
+    @IsNotEmpty()
+    location: string
 
 }
