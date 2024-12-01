@@ -45,6 +45,12 @@ export class RegisterComponent implements OnInit {
 
   submitForm(){
 
+    if(this.myForms.invalid){
+
+      this.myForms.markAsUntouched()
+
+    }else {
+
 
     const formValue: Register = this.myForms.value
 
@@ -61,6 +67,8 @@ export class RegisterComponent implements OnInit {
     })
 
   }
+
+}
 
 
 }
