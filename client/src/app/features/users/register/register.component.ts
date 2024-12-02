@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RegisterService } from '../../../core/service/register/register.service';
 import { Router } from '@angular/router';
 import { Register } from '../../../models/register.model';
 import { CommonModule } from '@angular/common';
+import { RegisterService } from '../../../core/service/users/register/register.service';
 
 
 @Component({

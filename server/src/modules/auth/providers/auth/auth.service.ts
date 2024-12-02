@@ -22,7 +22,7 @@ export class AuthService {
 
         const user = await this.userService.createUser(registerDto)
 
-        return { message: 'User registered successfully', user };
+        return {success: true, message: 'User registered successfully', user };
 
         } catch (error){
 
@@ -59,7 +59,7 @@ export class AuthService {
        const accessToken = await this.jwtAuthService.generateAccessToken(loginUser.id, loginUser.email)
        
 
-        return { message: 'User logged In Successfully', accessToken}
+        return { success: true, message: 'User logged In Successfully', token: accessToken, users: loginUser.email}
 
         } catch (error){
 
