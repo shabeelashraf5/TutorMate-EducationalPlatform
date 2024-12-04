@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
 
     if(this.myForms.invalid){
 
-      this.myForms.markAsUntouched()
+      this.myForms.markAllAsTouched()
 
     }else {
 
