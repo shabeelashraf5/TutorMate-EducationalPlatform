@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Register } from '../../../models/register.model';
 import { CommonModule } from '@angular/common';
 import { RegisterService } from '../../../core/service/users/register/register.service';
+import { passwordMatchValidator } from '../../../core/validators/password-match.validator';
 
 
 @Component({
@@ -26,6 +27,8 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  
+
 
   setForm(){
 
@@ -39,11 +42,14 @@ export class RegisterComponent implements OnInit {
       phone: new FormControl('', [Validators.required]),
       location: new FormControl('', [Validators.required])
 
-    })
+    },
+    { validators: passwordMatchValidator }
+  )
   }
 
 
   submitForm(){
+
 
     if(this.myForms.invalid){
 
@@ -51,22 +57,24 @@ export class RegisterComponent implements OnInit {
 
     }else {
 
-
+   
     const formValue: Register = this.myForms.value
 
+    console.log('Submitting form with values:', formValue);
     this.userService.registerUser(formValue).subscribe({
       next: (response) => {
         console.log('User registered successfully' , response)
         this.router.navigate(['/'])
       },
        error: (error) => {
-
-        console.log('Error Occured', error)
+        console.error('Error Occured', error)
 
        } 
     })
 
   }
+
+  
 
 }
 

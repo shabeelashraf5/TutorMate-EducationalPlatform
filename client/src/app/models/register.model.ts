@@ -6,7 +6,7 @@ export interface Register {
     email: string
     password: string
     repeat_password: string
-    phone: number
+    phone: string
     location: string
 
 }

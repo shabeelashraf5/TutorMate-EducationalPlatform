@@ -5,23 +5,15 @@ import { LoginDto } from './dto/login.dto';
 
 @Controller('api')
 export class AuthController {
+  constructor(private readonly authService: AuthService) {}
 
-    constructor(private readonly authService: AuthService){}
+  @Post('register')
+  public registerUser(@Body() registerUser: RegisterDto) {
+    return this.authService.register(registerUser);
+  }
 
-
-@Post('register')
-public registerUser(@Body() registerUser: RegisterDto){
-
-    return this.authService.register(registerUser)
-
-
-}
-
-@Post('login')
-public async loginUser(@Body() loginDto: LoginDto ){
-
-    return this.authService.login(loginDto)
-
-}
-
+  @Post('login')
+  public async loginUser(@Body() loginDto: LoginDto) {
+    return this.authService.login(loginDto);
+  }
 }
