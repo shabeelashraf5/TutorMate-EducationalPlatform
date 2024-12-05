@@ -34,6 +34,8 @@ export class UserNavbarComponent implements OnInit {
 
   getDetails(){
 
+   
+
     this.loginService.users$.subscribe({
       next: (user) => {
         this.isEmail = user.email

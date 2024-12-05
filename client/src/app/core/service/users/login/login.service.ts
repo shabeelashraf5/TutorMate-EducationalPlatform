@@ -12,11 +12,17 @@ export class LoginService {
   private apiUrl = 'http://localhost:3000/api'
   private tokenKey = 'token'
   private emailKey = 'email'
+  private userKey = 'user'
 
    private isLogged = new BehaviorSubject<boolean>(this.hasToken())
    loggedIn$ = this.isLogged.asObservable()
 
-   private isUsers = new BehaviorSubject<{email: string | null ; fname: string | null; lname: string | null}>({email: null, fname: null, lname: null })
+   private isUsers = new BehaviorSubject<{email: string | null ; fname: string | null; lname: string | null}>({
+    email: this.getEmailFromStorage(),
+    fname: this.getFnameFromStorage(),
+    lname: this.getLnameFromStorage(),
+
+    })
    users$ = this.isUsers.asObservable()
 
   //isLogged = signal<boolean>(this.hasToken())
@@ -30,10 +36,11 @@ export class LoginService {
         console.log('Login Response', response)
         if(response.success){
           localStorage.setItem(this.tokenKey, response.token)
+          localStorage.setItem(this.emailKey, response.users.email);  
+           localStorage.setItem('fname', response.users.fname);        
+            localStorage.setItem('lname', response.users.lname); 
            this.isLogged.next(true)
-
-           const {email, fname, lname} = response.users
-           this.isUsers.next({email, fname, lname})
+           this.isUsers.next({ email: response.users.email, fname: response.users.fname, lname: response.users.lname });
           
           console.log('Users:', response.users)
           console.log('Token:', response.token)
@@ -44,15 +51,34 @@ export class LoginService {
     )
   }
 
+  getStoredUser(): { email: string | null; fname: string | null; lname: string | null } | null {
+    const user = localStorage.getItem(this.userKey);
+    return user ? JSON.parse(user) : null;
+  }
 
 
   logOut(){
 
     localStorage.removeItem(this.tokenKey)
+    localStorage.removeItem(this.emailKey);
+    localStorage.removeItem('fname');
+    localStorage.removeItem('lname');
      this.isLogged.next(false)
     //this.isLogged.set(false)
     console.log('Token after logout:', this.getToken())
 
+  }
+
+  private getEmailFromStorage(): string | null {
+    return localStorage.getItem(this.emailKey);
+  }
+
+  private getFnameFromStorage(): string | null {
+    return localStorage.getItem('fname');
+  }
+
+  private getLnameFromStorage(): string | null {
+    return localStorage.getItem('lname');
   }
 
  
@@ -70,5 +96,7 @@ export class LoginService {
     return !!this.getToken()
 
   }
+
+ 
 
 }
