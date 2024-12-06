@@ -43,6 +43,9 @@
                   <span>Minimum length is 6.</span>
                 </small>
               </div>
+              <div *ngIf="passwordInvalid" class="text-red-600 font-bold">
+                <small>{{passwordInvalid}}</small>
+              </div>
         </div>
         <div class="flex items-start">
             <div class="flex items-start">

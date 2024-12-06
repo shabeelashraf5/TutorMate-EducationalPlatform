@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent implements OnInit {
 
   myForm!: FormGroup
+  passwordInvalid: string = ''
 
   private loginService = inject(LoginService)
   private router = inject(Router)
@@ -39,6 +40,8 @@ export class LoginComponent implements OnInit {
 
   loginIn(){
 
+    this.passwordInvalid = ' '
+
     if(this.myForm.invalid){
 
       this.myForm.markAllAsTouched()
@@ -53,6 +56,13 @@ export class LoginComponent implements OnInit {
 
           if(response.success){
             this.router.navigate(['/home'])
+          }
+        }, error: (error) => {
+
+          if(error.status === 400){
+
+            this.passwordInvalid = 'Entered Password is Invalid'
+
           }
         }
       })
