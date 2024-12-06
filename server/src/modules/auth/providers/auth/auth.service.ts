@@ -13,6 +13,14 @@ export class AuthService {
 
   async register(registerDto: RegisterDto) {
     try {
+      const { email } = registerDto;
+
+      const existingUser = await this.userService.findEmail(email);
+
+      if (existingUser) {
+        throw new HttpException('Email Already Used', HttpStatus.BAD_REQUEST);
+      }
+
       const user = await this.userService.createUser(registerDto);
 
       return { success: true, message: 'User registered successfully', user };

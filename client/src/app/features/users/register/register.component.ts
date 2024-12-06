@@ -17,6 +17,7 @@ import { passwordMatchValidator } from '../../../core/validators/password-match.
 export class RegisterComponent implements OnInit {
 
   myForms!: FormGroup
+  existEmail: string = ""
 
   private userService = inject(RegisterService)
   private router = inject(Router)
@@ -67,6 +68,11 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/'])
       },
        error: (error) => {
+
+        if(error.status === 400){
+          this.existEmail = 'Email alreadt exit. Please try different Email'
+
+        }
         console.error('Error Occured', error)
 
        } 

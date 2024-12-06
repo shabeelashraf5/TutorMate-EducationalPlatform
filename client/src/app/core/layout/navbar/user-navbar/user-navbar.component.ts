@@ -54,7 +54,8 @@ export class UserNavbarComponent implements OnInit {
 
 
   logOut(){
-
+    
+    this.isDropdownOpen = false; 
     this.loginService.logOut()
     this.router.navigate(['/'])
 
