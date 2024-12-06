@@ -59,10 +59,11 @@ export class LoginService {
 
   logOut(){
 
-    localStorage.removeItem(this.tokenKey)
-    localStorage.removeItem(this.emailKey);
-    localStorage.removeItem('fname');
-    localStorage.removeItem('lname');
+    // localStorage.removeItem(this.tokenKey)
+    // localStorage.removeItem(this.emailKey);
+    // localStorage.removeItem('fname');
+    // localStorage.removeItem('lname');
+    localStorage.clear()
      this.isLogged.next(false)
     //this.isLogged.set(false)
     console.log('Token after logout:', this.getToken())
