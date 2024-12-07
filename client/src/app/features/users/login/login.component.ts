@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   myForm!: FormGroup
   passwordInvalid: string = ''
+  emailInvalid: string = ''
 
   private loginService = inject(LoginService)
   private router = inject(Router)
@@ -62,6 +63,10 @@ export class LoginComponent implements OnInit {
           if(error.status === 400){
 
             this.passwordInvalid = 'Entered Password is Invalid'
+
+          } else if(error.status === 401){
+
+            this.emailInvalid = 'Invalid Email, Please register your account'
 
           }
         }

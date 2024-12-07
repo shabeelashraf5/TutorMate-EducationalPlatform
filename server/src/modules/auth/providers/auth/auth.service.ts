@@ -39,7 +39,7 @@ export class AuthService {
 
       if (!loginUser) {
         throw new HttpException(
-          'Invalid email or password',
+          'Invalid email, please register your email',
           HttpStatus.UNAUTHORIZED,
         );
       }
