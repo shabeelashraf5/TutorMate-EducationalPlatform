@@ -9,7 +9,7 @@
       action="#"
     >
       <h5 class="text-xl font-medium text-gray-900 dark:text-white">
-        Sign in to our platform
+        Sign in to {{ role === 'admin' ? 'Admin' : 'User' }} platform
       </h5>
       <div>
         <label
@@ -53,8 +53,9 @@
               <path
                 fill="#fff"
                 d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z"
-              ></path></svg
-            ><span>Email is required.</span></small
+              ></path>
+            </svg>
+            <span>Email is required.</span></small
           >
           <small
             *ngIf="myForm.get('email')?.errors?.['email']"
@@ -79,8 +80,9 @@
               <path
                 fill="#fff"
                 d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z"
-              ></path></svg
-            ><span>Invalid email format.</span></small
+              ></path>
+            </svg>
+            <span>Invalid email format.</span></small
           >
         </div>
         <div *ngIf="emailInvalid" class="text-red-600 font-bold">

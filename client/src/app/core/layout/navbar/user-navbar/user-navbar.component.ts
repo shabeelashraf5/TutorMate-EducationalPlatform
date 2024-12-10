@@ -3,11 +3,12 @@ import { Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginService } from '../../../service/users/login/login.service';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../../../../shared/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-user-navbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NavbarComponent],
   templateUrl: './user-navbar.component.html',
   styleUrl: './user-navbar.component.css',
 })
@@ -18,6 +19,13 @@ export class UserNavbarComponent implements OnInit {
   isEmail!: string | null;
   isFname!: string | null;
   isLname!: string | null;
+
+  menuItems = [
+    { name: 'Home' },
+    { name: 'About' },
+    { name: 'Services' },
+    { name: 'Contact' },
+  ];
 
   //isLogged = computed(() => this.loginService.isLogged())
 
@@ -40,14 +48,14 @@ export class UserNavbarComponent implements OnInit {
     });
   }
 
-  toggleDropdown() {
+  toggleDropdown = () => {
     this.isDropdownOpen = !this.isDropdownOpen;
     console.log('Dropdown toggled:', this.isDropdownOpen);
-  }
+  };
 
-  logOut() {
+  logOut = () => {
     this.isDropdownOpen = false;
     this.loginService.logOut();
     this.router.navigate(['/']);
-  }
+  };
 }

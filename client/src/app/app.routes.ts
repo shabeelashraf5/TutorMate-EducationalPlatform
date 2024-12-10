@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './features/users/login/login.component';
 import { RegisterComponent } from './features/users/register/register.component';
 import { HomeComponent } from './features/users/home/home.component';
 import { loggedOutGuard } from './core/guards/users/logged-out.guard';
@@ -8,9 +7,10 @@ import { LoginadComponent } from './features/admin/loginad/loginad.component';
 import { DashboardComponent } from './features/admin/dashboard/dashboard.component';
 import { UsersadComponent } from './features/admin/usersad/usersad.component';
 import { AdminlayoutComponent } from './features/admin/adminlayout.component';
+import { LoginuserComponent } from './features/users/loginuser/loginuser.component';
 
 export const routes: Routes = [
-  { path: '', component: LoginComponent, canActivate: [loggedOutGuard] },
+  { path: '', component: LoginuserComponent, canActivate: [loggedOutGuard] },
   {
     path: 'register',
     component: RegisterComponent,
