@@ -7,7 +7,7 @@ import { UserNavbarComponent } from './core/layout/navbar/user-navbar/user-navba
   standalone: true,
   imports: [RouterOutlet, UserNavbarComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'client';

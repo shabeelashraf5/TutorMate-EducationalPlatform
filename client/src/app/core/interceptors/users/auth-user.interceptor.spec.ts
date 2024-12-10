@@ -4,7 +4,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { authUserInterceptor } from './auth-user.interceptor';
 
 describe('authUserInterceptor', () => {
-  const interceptor: HttpInterceptorFn = (req, next) => 
+  const interceptor: HttpInterceptorFn = (req, next) =>
     TestBed.runInInjectionContext(() => authUserInterceptor(req, next));
 
   beforeEach(() => {

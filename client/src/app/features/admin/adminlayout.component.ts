@@ -6,8 +6,6 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './adminlayout.component.html',
-  styleUrl: './adminlayout.component.css'
+  styleUrl: './adminlayout.component.css',
 })
-export class AdminlayoutComponent {
-
-}
+export class AdminlayoutComponent {}

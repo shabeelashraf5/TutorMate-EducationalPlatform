@@ -3,20 +3,17 @@ import { CanActivateFn, Router } from '@angular/router';
 import { LoginService } from '../../service/users/login/login.service';
 
 export const loggedInGuard: CanActivateFn = (route, state) => {
+  const logService = inject(LoginService);
+  const router = inject(Router);
 
-  const logService = inject(LoginService)
-  const router = inject(Router)
+  const token = logService.getToken();
 
-  const token = logService.getToken()
-
-  if(token){
+  if (token) {
     console.log('canEmployeeLogged activated: Token exists:', token);
-    return true
-  }else {
+    return true;
+  } else {
     console.log('canEmployeeLogged activated: Token does not exist');
-    router.navigate(['/'])
-    return false
+    router.navigate(['/']);
+    return false;
   }
-
- 
 };

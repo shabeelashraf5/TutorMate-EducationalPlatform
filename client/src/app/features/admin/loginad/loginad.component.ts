@@ -6,8 +6,6 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './loginad.component.html',
-  styleUrl: './loginad.component.css'
+  styleUrl: './loginad.component.css',
 })
-export class LoginadComponent {
-
-}
+export class LoginadComponent {}

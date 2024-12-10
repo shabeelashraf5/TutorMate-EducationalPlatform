@@ -10,16 +10,22 @@ import { UsersadComponent } from './features/admin/usersad/usersad.component';
 import { AdminlayoutComponent } from './features/admin/adminlayout.component';
 
 export const routes: Routes = [
+  { path: '', component: LoginComponent, canActivate: [loggedOutGuard] },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [loggedOutGuard],
+  },
+  { path: 'home', component: HomeComponent, canActivate: [loggedInGuard] },
 
-    {path: '' , component: LoginComponent, canActivate: [loggedOutGuard] },
-    {path: 'register', component: RegisterComponent, canActivate: [loggedOutGuard]},
-    {path: 'home', component: HomeComponent, canActivate: [loggedInGuard]},
-
-    {path: 'admin', component: AdminlayoutComponent , children: [
-        {path: '', redirectTo: 'login', pathMatch: 'full'},
-        {path: 'login', component: LoginadComponent},
-        {path: 'dashboard', component: DashboardComponent},
-        {path: 'users', component: UsersadComponent},
-    ]}
-    
+  {
+    path: 'admin',
+    component: AdminlayoutComponent,
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginadComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'users', component: UsersadComponent },
+    ],
+  },
 ];
