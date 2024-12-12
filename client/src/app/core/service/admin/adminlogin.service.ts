@@ -1,43 +1,59 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdminloginService {
+  private apiUrl = 'http://localhost:3000/api';
+  private token = 'token';
 
-  private apiUrl = 'http://localhost:3000/api'
-  private token = 'token'
+  private isAdminLoged = new BehaviorSubject<boolean>(this.hasAdminToken());
+  adminlogged$ = this.isAdminLoged.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
+  login(
+    email: string,
+    password: string
+  ): Observable<{
+    success: boolean;
+    message: string;
+    admin: string;
+    token: string;
+  }> {
+    return this.http
+      .post<{
+        success: boolean;
+        message: string;
+        admin: string;
+        token: string;
+      }>(`${this.apiUrl}/admin/dashboard`, { email, password })
+      .pipe(
+        tap((response) => {
+          if (response.success) {
+            localStorage.setItem(this.token, response.token);
+            this.isAdminLoged.next(true);
 
-  login(email: string , password: string){
-
-
-
-    return this.http.post(`${this.apiUrl}/login`, {email, password}).pipe(
-      tap((response) => {
-        
-        if(response){
-
-          //localStorage.setItem(this.token, response.token)
-
-        }
-      })
-    )
-
-
+            console.log('Token:', response.token);
+          }
+        })
+      );
   }
 
-
-
-  getToken(){
-
-    const token = localStorage.getItem(this.token)
-    return token 
+  adminLoggedOut() {
+    localStorage.clear();
+    this.isAdminLoged.next(false);
+    console.log('Token after Admin logout:', this.getToken());
   }
 
-  
+  getToken() {
+    const token = localStorage.getItem(this.token);
+    return token;
+  }
+
+  hasAdminToken(): boolean {
+    return !!this.getToken();
+  }
 }

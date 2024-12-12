@@ -12,6 +12,7 @@ import {
 } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { authUserInterceptor } from './core/interceptors/users/auth-user.interceptor';
+import { LoginService } from './core/service/users/login/login.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,5 +21,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     importProvidersFrom(ReactiveFormsModule),
     provideHttpClient(withInterceptors([authUserInterceptor])),
+    LoginService,
   ],
 };

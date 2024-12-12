@@ -1,7 +1,5 @@
 export interface AdminUser {
-
-    fullName: 'string'
-    email: 'string'
-    password: 'string'
-
+  fullName: 'string';
+  email: 'string';
+  password: 'string';
 }

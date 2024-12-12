@@ -9,7 +9,7 @@ import { Register } from '../../../../models/register.model';
 export class LoginService {
   private apiUrl = 'http://localhost:3000/api';
   private tokenKey = 'token';
-  private emailKey = 'email';
+  //private emailKey = 'email';
   private userKey = 'user';
 
   private isLogged = new BehaviorSubject<boolean>(this.hasToken());
@@ -45,13 +45,13 @@ export class LoginService {
         message: string;
         token: string;
         users: { email: string; fname: string; lname: string };
-      }>(`${this.apiUrl}/login`, { email, password })
+      }>(`${this.apiUrl}/home`, { email, password })
       .pipe(
         tap((response) => {
           console.log('Login Response', response);
           if (response.success) {
             localStorage.setItem(this.tokenKey, response.token);
-            localStorage.setItem(this.emailKey, response.users.email);
+            localStorage.setItem('email', response.users.email);
             localStorage.setItem('fname', response.users.fname);
             localStorage.setItem('lname', response.users.lname);
             this.isLogged.next(true);
@@ -68,14 +68,14 @@ export class LoginService {
       );
   }
 
-  getStoredUser(): {
-    email: string | null;
-    fname: string | null;
-    lname: string | null;
-  } | null {
-    const user = localStorage.getItem(this.userKey);
-    return user ? JSON.parse(user) : null;
-  }
+  // getStoredUser(): {
+  //   email: string | null;
+  //   fname: string | null;
+  //   lname: string | null;
+  // } | null {
+  //   const user = localStorage.getItem(this.userKey);
+  //   return user ? JSON.parse(user) : null;
+  // }
 
   logOut() {
     // localStorage.removeItem(this.tokenKey)
@@ -89,7 +89,7 @@ export class LoginService {
   }
 
   private getEmailFromStorage(): string | null {
-    return localStorage.getItem(this.emailKey);
+    return localStorage.getItem('email');
   }
 
   private getFnameFromStorage(): string | null {

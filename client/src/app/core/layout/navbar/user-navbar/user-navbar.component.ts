@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, Input, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginService } from '../../../service/users/login/login.service';
@@ -8,54 +8,63 @@ import { NavbarComponent } from '../../../../shared/components/navbar/navbar.com
 @Component({
   selector: 'app-user-navbar',
   standalone: true,
-  imports: [CommonModule, NavbarComponent],
+  imports: [CommonModule],
   templateUrl: './user-navbar.component.html',
   styleUrl: './user-navbar.component.css',
 })
-export class UserNavbarComponent implements OnInit {
-  isDropdownOpen: boolean = false;
+export class UserNavbarComponent {
+  @Input() menuItems: { name: string }[] = [];
+  @Input() isFname: string | null = '';
+  @Input() isLname: string | null = '';
+  @Input() isEmail: string | null = '';
+  @Input() toggleDropdown: Function = () => {};
+  @Input() logOut: Function = () => {};
+  @Input() isDropdownOpen: boolean = false;
+  @Input() isLogged!: Observable<boolean>;
 
-  isLogged!: Observable<boolean>;
-  isEmail!: string | null;
-  isFname!: string | null;
-  isLname!: string | null;
+  // isDropdownOpen: boolean = false;
 
-  menuItems = [
-    { name: 'Home' },
-    { name: 'About' },
-    { name: 'Services' },
-    { name: 'Contact' },
-  ];
+  // isLogged!: Observable<boolean>;
+  // isEmail!: string | null;
+  // isFname!: string | null;
+  // isLname!: string | null;
 
-  //isLogged = computed(() => this.loginService.isLogged())
+  // menuItems = [
+  //   { name: 'Home' },
+  //   { name: 'About' },
+  //   { name: 'Services' },
+  //   { name: 'Contact' },
+  // ];
 
-  private loginService = inject(LoginService);
-  private router = inject(Router);
+  // //isLogged = computed(() => this.loginService.isLogged())
 
-  ngOnInit() {
-    this.isLogged = this.loginService.loggedIn$;
-    this.getDetails();
-  }
+  // private loginService = inject(LoginService);
+  // private router = inject(Router);
 
-  getDetails() {
-    this.loginService.users$.subscribe({
-      next: (user) => {
-        this.isEmail = user.email;
-        this.isFname = user.fname;
-        this.isLname = user.lname;
-        console.log('Logged email', user);
-      },
-    });
-  }
+  // ngOnInit() {
+  //   this.isLogged = this.loginService.loggedIn$;
+  //   this.getDetails();
+  // }
 
-  toggleDropdown = () => {
-    this.isDropdownOpen = !this.isDropdownOpen;
-    console.log('Dropdown toggled:', this.isDropdownOpen);
-  };
+  // getDetails() {
+  //   this.loginService.users$.subscribe({
+  //     next: (user) => {
+  //       this.isEmail = user.email;
+  //       this.isFname = user.fname;
+  //       this.isLname = user.lname;
+  //       console.log('Logged email', user);
+  //     },
+  //   });
+  // }
 
-  logOut = () => {
-    this.isDropdownOpen = false;
-    this.loginService.logOut();
-    this.router.navigate(['/']);
-  };
+  // toggleDropdown = () => {
+  //   this.isDropdownOpen = !this.isDropdownOpen;
+  //   console.log('Dropdown toggled:', this.isDropdownOpen);
+  // };
+
+  // logOut = () => {
+  //   this.isDropdownOpen = false;
+  //   this.loginService.logOut();
+  //   this.router.navigate(['/']);
+  // };
 }

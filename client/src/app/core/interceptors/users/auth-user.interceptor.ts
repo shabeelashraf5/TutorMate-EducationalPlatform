@@ -4,11 +4,14 @@ import { LoginService } from '../../service/users/login/login.service';
 
 export const authUserInterceptor: HttpInterceptorFn = (req, next) => {
   const loginService = inject(LoginService);
+
+  console.log('Url is connected', req.url);
+
   const token = loginService.getToken();
 
   console.log('Token from UserInterceptor:', token);
 
-  if (token) {
+  if (token && req.url.includes('home')) {
     req = req.clone({
       setHeaders: { Authorization: `Bearer ${token}` },
     });
