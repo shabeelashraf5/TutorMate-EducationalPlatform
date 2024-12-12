@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { AdminUserService } from 'src/modules/admin/admin-user/providers/admin-user/admin-user.service';
 import { AdminRegisterDto } from '../../dto/ad-register.dto';
+import { AdminLoginDto } from '../../dto/ad-login.dto';
 
 @Injectable()
 export class AdminAuthService {
@@ -15,6 +16,16 @@ export class AdminAuthService {
       success: true,
       message: 'Admin registered successfully',
       registerAdmin,
+    };
+  }
+
+  async AdminLogin(adminLoginDto: AdminLoginDto) {
+    const adminLogin = await this.adminUser.findAdminEmail(adminLoginDto.email);
+
+    return {
+      success: true,
+      message: 'Admin Successfully logged',
+      admin: adminLogin,
     };
   }
 }

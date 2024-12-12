@@ -13,4 +13,8 @@ export class AdminUserService {
     const savedAdmin = await newAdmin.save();
     return savedAdmin;
   }
+
+  async findAdminEmail(email: string) {
+    return this.adminModel.findOne({ email }).exec();
+  }
 }
