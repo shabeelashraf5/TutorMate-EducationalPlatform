@@ -12,6 +12,7 @@ export class AdminloginService {
   private isAdminLoged = new BehaviorSubject<boolean>(this.hasAdminToken());
   adminlogged$ = this.isAdminLoged.asObservable();
 
+
   constructor(private http: HttpClient) {}
 
   login(
@@ -42,18 +43,20 @@ export class AdminloginService {
       );
   }
 
+
   adminLoggedOut() {
-    localStorage.clear();
+    localStorage.removeItem(this.token);
     this.isAdminLoged.next(false);
-    console.log('Token after Admin logout:', this.getToken());
+    console.log('Token after Admin logout:', this.getTokens());
   }
 
-  getToken() {
+  getTokens() {
     const token = localStorage.getItem(this.token);
+    console.log('Retrieved Admin Token:', token);
     return token;
   }
 
   hasAdminToken(): boolean {
-    return !!this.getToken();
+    return !!this.getTokens();
   }
 }

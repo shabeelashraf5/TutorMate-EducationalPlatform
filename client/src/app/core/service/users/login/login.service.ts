@@ -15,6 +15,7 @@ export class LoginService {
   private isLogged = new BehaviorSubject<boolean>(this.hasToken());
   loggedIn$ = this.isLogged.asObservable();
 
+
   private isUsers = new BehaviorSubject<{
     email: string | null;
     fname: string | null;
@@ -68,6 +69,7 @@ export class LoginService {
       );
   }
 
+
   // getStoredUser(): {
   //   email: string | null;
   //   fname: string | null;
@@ -78,11 +80,11 @@ export class LoginService {
   // }
 
   logOut() {
-    // localStorage.removeItem(this.tokenKey)
-    // localStorage.removeItem(this.emailKey);
-    // localStorage.removeItem('fname');
-    // localStorage.removeItem('lname');
-    localStorage.clear();
+    localStorage.removeItem(this.tokenKey)
+    localStorage.removeItem('email');
+    localStorage.removeItem('fname');
+    localStorage.removeItem('lname');
+    //localStorage.clear();
     this.isLogged.next(false);
     //this.isLogged.set(false)
     console.log('Token after logout:', this.getToken());
