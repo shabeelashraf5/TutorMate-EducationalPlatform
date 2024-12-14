@@ -13,24 +13,29 @@ import { adminloggedInGuard } from './core/guards/admin/adminlogged-in.guard';
 import { QuizComponent } from './features/users/quiz/quiz.component';
 
 export const routes: Routes = [
-  { path: '', component: LoginuserComponent, canActivate: [loggedOutGuard] },
+  { path: 'login-user', component: LoginuserComponent, canActivate: [loggedOutGuard] },
+  { path: '', redirectTo: 'login-user', pathMatch: 'full' },
+
   {
     path: 'register',
     component: RegisterComponent,
     canActivate: [loggedOutGuard],
   },
-  { path: 'home', component: HomeComponent, canActivate: [loggedInGuard], children: [
+  
+  { path: 'users', children: [
+    {path: 'home', component: HomeComponent, canActivate: [loggedInGuard]},
     {path: 'quiz', component: QuizComponent, canActivate: [loggedInGuard] }
   ] },
 
   {
     path: 'admin',
-    component: AdminlayoutComponent,
+    component: AdminlayoutComponent ,  
     children: [
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      //{ path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginadComponent, canActivate: [adminloggedOutGuard] },
       { path: 'dashboard', component: DashboardComponent, canActivate: [adminloggedInGuard] },
       { path: 'users', component: UsersadComponent, canActivate: [adminloggedInGuard]  },
+      { path: '**', redirectTo: 'login', pathMatch: 'full' }
     ],
   },
 ];

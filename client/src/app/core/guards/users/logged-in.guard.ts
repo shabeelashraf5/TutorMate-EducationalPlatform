@@ -7,13 +7,17 @@ export const loggedInGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   const token = logService.getToken();
+  const userRole = logService.getUserRoleStorage()
+  
+  console.log('From User Guard', userRole)
+  console.log('UserloggedInGuard: Token:', token);
 
   if (token) {
-    console.log('canEmployeeLogged activated: Token exists:', token);
+    console.log('User is logged in, allowing access to /users/home');
     return true;
   } else {
-    console.log('canEmployeeLogged activated: Token does not exist');
-    router.navigate(['/']);
+    console.log('User is not logged in, redirecting to /login-user');
+    router.navigate(['/login-user']);
     return false;
   }
 };

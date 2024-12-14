@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 })
 export class AdminloginService {
   private apiUrl = 'http://localhost:3000/api';
-  private token = 'token';
+  private token = 'admin-token';
 
   private isAdminLoged = new BehaviorSubject<boolean>(this.hasAdminToken());
   adminlogged$ = this.isAdminLoged.asObservable();
@@ -23,6 +23,7 @@ export class AdminloginService {
     message: string;
     admin: string;
     token: string;
+    role: string;
   }> {
     return this.http
       .post<{
@@ -30,11 +31,13 @@ export class AdminloginService {
         message: string;
         admin: string;
         token: string;
+        role: string
       }>(`${this.apiUrl}/admin/dashboard`, { email, password })
       .pipe(
         tap((response) => {
-          if (response.success) {
+          if (response.success && response.role) {
             localStorage.setItem(this.token, response.token);
+            localStorage.setItem('role', response.role )
             this.isAdminLoged.next(true);
 
             console.log('Token:', response.token);
@@ -46,8 +49,17 @@ export class AdminloginService {
 
   adminLoggedOut() {
     localStorage.removeItem(this.token);
+    localStorage.removeItem('role')
     this.isAdminLoged.next(false);
     console.log('Token after Admin logout:', this.getTokens());
+  }
+
+  getRoleStorage() {
+
+    const adminRole = localStorage.getItem('role')
+    console.log('Your Role is',adminRole)
+    return adminRole
+    
   }
 
   getTokens() {

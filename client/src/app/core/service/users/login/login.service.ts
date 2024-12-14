@@ -7,7 +7,7 @@ import { Register } from '../../../../models/register.model';
   providedIn: 'root',
 })
 export class LoginService {
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = 'http://localhost:3000/api/users';
   private tokenKey = 'token';
   //private emailKey = 'email';
   private userKey = 'user';
@@ -38,23 +38,27 @@ export class LoginService {
     success: boolean;
     message: string;
     token: string;
-    users: { email: string; fname: string; lname: string };
+    role: string;
+    users: { email: string; fname: string; lname: string; };
   }> {
     return this.http
       .post<{
         success: boolean;
         message: string;
         token: string;
-        users: { email: string; fname: string; lname: string };
+        role: string;
+        users: { email: string; fname: string; lname: string; };
       }>(`${this.apiUrl}/home`, { email, password })
       .pipe(
         tap((response) => {
           console.log('Login Response', response);
-          if (response.success) {
+          console.log('User Role:', response.role)
+          if (response.success && response.role) {
             localStorage.setItem(this.tokenKey, response.token);
             localStorage.setItem('email', response.users.email);
             localStorage.setItem('fname', response.users.fname);
             localStorage.setItem('lname', response.users.lname);
+            localStorage.setItem('role', response.role)
             this.isLogged.next(true);
             this.isUsers.next({
               email: response.users.email,
@@ -69,23 +73,15 @@ export class LoginService {
       );
   }
 
-
-  // getStoredUser(): {
-  //   email: string | null;
-  //   fname: string | null;
-  //   lname: string | null;
-  // } | null {
-  //   const user = localStorage.getItem(this.userKey);
-  //   return user ? JSON.parse(user) : null;
-  // }
-
   logOut() {
     localStorage.removeItem(this.tokenKey)
     localStorage.removeItem('email');
     localStorage.removeItem('fname');
     localStorage.removeItem('lname');
+    localStorage.removeItem('role')
     //localStorage.clear();
     this.isLogged.next(false);
+    this.isUsers.next({ email: null, fname: null, lname: null });
     //this.isLogged.set(false)
     console.log('Token after logout:', this.getToken());
   }
@@ -100,6 +96,12 @@ export class LoginService {
 
   private getLnameFromStorage(): string | null {
     return localStorage.getItem('lname');
+  }
+
+  getUserRoleStorage() {
+    const userRole = localStorage.getItem('role')
+    console.log('User Role is:', userRole)
+    return userRole
   }
 
   getToken() {

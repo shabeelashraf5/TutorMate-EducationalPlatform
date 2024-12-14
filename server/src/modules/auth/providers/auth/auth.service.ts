@@ -58,6 +58,7 @@ export class AuthService {
         message: 'User logged In Successfully',
         token: accessToken,
         users: loginUser,
+        role: loginUser.role,
       };
     } catch (error) {
       if (error instanceof HttpException) {

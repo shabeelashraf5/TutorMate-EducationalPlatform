@@ -12,7 +12,7 @@ export class AuthController {
     return this.authService.register(registerUser);
   }
 
-  @Post('home')
+  @Post('users/home')
   public async loginUser(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto);
   }

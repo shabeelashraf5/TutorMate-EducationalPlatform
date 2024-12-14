@@ -14,7 +14,7 @@ import { AdminloginService } from '../../../core/service/admin/adminlogin.servic
 @Component({
   selector: 'app-loginuser',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './loginuser.component.html',
   styleUrl: './loginuser.component.css',
 })
@@ -55,8 +55,8 @@ export class LoginuserComponent {
       const userDetails = this.myForm.value;
       this.loginService.login(userDetails.email, userDetails.password).subscribe({
         next: (response) => {
-          if (response.success) {
-            this.router.navigate(['/home']);
+          if (response.success && response.role) {
+            this.router.navigate(['/users/home']);
           }
         },
         error: (error) => {

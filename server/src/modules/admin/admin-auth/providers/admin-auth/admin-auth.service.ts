@@ -44,6 +44,7 @@ export class AdminAuthService {
       message: 'Admin Successfully logged',
       admin: adminLogin,
       token: accessToken,
+      role: adminLogin.role,
     };
   }
 }

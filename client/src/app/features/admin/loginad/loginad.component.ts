@@ -54,7 +54,7 @@ export class LoginadComponent implements OnInit {
       const userDetails = this.myForm.value;
       this.adminLoginService.login(userDetails.email, userDetails.password).subscribe({
         next: (response) => {
-          if (response.success) {
+          if (response.success && response.role) {
             this.router.navigate(['/admin/dashboard']);
           }
         },
