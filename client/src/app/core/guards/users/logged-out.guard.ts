@@ -9,12 +9,10 @@ export const loggedOutGuard: CanActivateFn = (route, state) => {
   const token = logService.getToken();
 
   if (token) {
-    
     console.log('User is already logged in, redirecting to /users/home');
 
     router.navigate(['/users/home']);
     return false;
-
   } else {
     console.log('User is not logged in, allowing access to /login-user');
     return true;

@@ -12,18 +12,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: './adminlayout.component.css',
 })
 export class AdminlayoutComponent implements OnInit {
+  isAdminDropdownOpen: boolean = false;
+  isAdminLogged!: Observable<boolean>;
 
-  isAdminDropdownOpen: boolean = false
-  isAdminLogged!: Observable<boolean>
-
-  router = inject(Router)
-  adminLoginService = inject(AdminloginService)
-
-
+  router = inject(Router);
+  adminLoginService = inject(AdminloginService);
 
   ngOnInit() {
-
-    this.isAdminLogged = this.adminLoginService.adminlogged$
+    this.isAdminLogged = this.adminLoginService.adminlogged$;
   }
 
   toggleAdminDropdown = () => {
@@ -31,12 +27,9 @@ export class AdminlayoutComponent implements OnInit {
     console.log('Dropdown toggled:', this.isAdminDropdownOpen);
   };
 
-
-  adminLogOut(){
-
-    this.adminLoginService.adminLoggedOut()
-    this.router.navigate(['/admin'])
-    this.isAdminDropdownOpen = false
-
+  adminLogOut() {
+    this.adminLoginService.adminLoggedOut();
+    this.router.navigate(['/admin']);
+    this.isAdminDropdownOpen = false;
   }
 }

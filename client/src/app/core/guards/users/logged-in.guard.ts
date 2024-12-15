@@ -7,9 +7,9 @@ export const loggedInGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   const token = logService.getToken();
-  const userRole = logService.getUserRoleStorage()
-  
-  console.log('From User Guard', userRole)
+  const userRole = logService.getUserRoleStorage();
+
+  console.log('From User Guard', userRole);
   console.log('UserloggedInGuard: Token:', token);
 
   if (token) {

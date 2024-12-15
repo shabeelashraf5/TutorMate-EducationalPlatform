@@ -1,12 +1,17 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpInterceptorFn,
+  HttpRequest,
+} from '@angular/common/http';
 import { inject, Injectable, Injector } from '@angular/core';
 import { LoginService } from '../../service/users/login/login.service';
 import { AdminloginService } from '../../service/admin/adminlogin.service';
 import { Observable } from 'rxjs';
 
-
 export const authUserInterceptor: HttpInterceptorFn = (req, next) => {
-  if (req.url.includes('users') ) { 
+  if (req.url.includes('users')) {
     const loginService = inject(LoginService);
 
     console.log('User URL Connected:', req.url);
@@ -16,13 +21,9 @@ export const authUserInterceptor: HttpInterceptorFn = (req, next) => {
 
     if (token) {
       req = req.clone({
-        setHeaders: { Authorization: `Bearer ${token}` }, 
+        setHeaders: { Authorization: `Bearer ${token}` },
       });
     }
   }
   return next(req);
 };
-
-
-
-

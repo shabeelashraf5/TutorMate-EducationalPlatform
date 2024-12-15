@@ -11,46 +11,35 @@ import { AdminNavbarComponent } from './core/layout/navbar/admin-navbar/admin-na
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    CommonModule,
-   
-  ],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent  {
+export class AppComponent {
   // isDropdownOpen: boolean = false;
-
   // isLogged!: Observable<boolean>;
   // isAdminLoggedIn!: Observable<boolean>
   // userRole$!: Observable<'user' | 'admin' | null>;
-
   // isEmail!: string | null;
   // isFname!: string | null;
   // isLname!: string | null;
-
   // c
   // isAdminLogged!: Observable<boolean>;
-
   // menuItems = [
   //   { name: 'Home' },
   //   { name: 'About' },
   //   { name: 'Services' },
   //   { name: 'Contact' },
   // ];
-
   // adminMenuItems = [
   //   { name: 'Home' },
   //   { name: 'About' },
   //   { name: 'Services' },
   //   { name: 'Contact' },
   // ];
-
   // private loginService = inject(LoginService);
   // private adminLoginService = inject(AdminloginService);
   // private router = inject(Router);
-
   // ngOnInit() {
   //   this.isLogged = this.loginService.loggedIn$;
   //   this.isAdminLogged = this.adminLoginService.adminlogged$
@@ -61,10 +50,8 @@ export class AppComponent  {
   //   //     return null;
   //   //   })
   //   // );
-
   //   this.getDetails();
   // }
-
   // getDetails() {
   //   this.loginService.users$.subscribe({
   //     next: (user) => {
@@ -75,23 +62,19 @@ export class AppComponent  {
   //     },
   //   });
   // }
-
   // toggleDropdown = () => {
   //   this.isDropdownOpen = !this.isDropdownOpen;
   //   console.log('Dropdown toggled:', this.isDropdownOpen);
   // };
-
   // toggleAdminDropdown = () => {
   //   this.isAdminDropdownOpen = !this.isAdminDropdownOpen;
   //   console.log('Dropdown toggled:', this.isAdminDropdownOpen);
   // };
-
   // logOut = () => {
   //   this.isDropdownOpen = false;
   //   this.loginService.logOut();
   //   this.router.navigate(['/']);
   // };
-
   // adminLogOut() {
   //   this.adminLoginService.adminLoggedOut();
   //   this.router.navigate(['/admin']);

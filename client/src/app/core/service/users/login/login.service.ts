@@ -15,7 +15,6 @@ export class LoginService {
   private isLogged = new BehaviorSubject<boolean>(this.hasToken());
   loggedIn$ = this.isLogged.asObservable();
 
-
   private isUsers = new BehaviorSubject<{
     email: string | null;
     fname: string | null;
@@ -39,7 +38,7 @@ export class LoginService {
     message: string;
     token: string;
     role: string;
-    users: { email: string; fname: string; lname: string; };
+    users: { email: string; fname: string; lname: string };
   }> {
     return this.http
       .post<{
@@ -47,18 +46,18 @@ export class LoginService {
         message: string;
         token: string;
         role: string;
-        users: { email: string; fname: string; lname: string; };
+        users: { email: string; fname: string; lname: string };
       }>(`${this.apiUrl}/home`, { email, password })
       .pipe(
         tap((response) => {
           console.log('Login Response', response);
-          console.log('User Role:', response.role)
+          console.log('User Role:', response.role);
           if (response.success && response.role) {
             localStorage.setItem(this.tokenKey, response.token);
             localStorage.setItem('email', response.users.email);
             localStorage.setItem('fname', response.users.fname);
             localStorage.setItem('lname', response.users.lname);
-            localStorage.setItem('role', response.role)
+            localStorage.setItem('role', response.role);
             this.isLogged.next(true);
             this.isUsers.next({
               email: response.users.email,
@@ -74,11 +73,11 @@ export class LoginService {
   }
 
   logOut() {
-    localStorage.removeItem(this.tokenKey)
+    localStorage.removeItem(this.tokenKey);
     localStorage.removeItem('email');
     localStorage.removeItem('fname');
     localStorage.removeItem('lname');
-    localStorage.removeItem('role')
+    localStorage.removeItem('role');
     //localStorage.clear();
     this.isLogged.next(false);
     this.isUsers.next({ email: null, fname: null, lname: null });
@@ -99,9 +98,9 @@ export class LoginService {
   }
 
   getUserRoleStorage() {
-    const userRole = localStorage.getItem('role')
-    console.log('User Role is:', userRole)
-    return userRole
+    const userRole = localStorage.getItem('role');
+    console.log('User Role is:', userRole);
+    return userRole;
   }
 
   getToken() {

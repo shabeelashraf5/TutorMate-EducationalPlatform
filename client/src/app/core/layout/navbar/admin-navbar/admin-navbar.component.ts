@@ -9,7 +9,7 @@ import { AdminlayoutComponent } from '../../../../features/admin/adminlayout.com
 @Component({
   selector: 'app-admin-navbar',
   standalone: true,
-  imports: [CommonModule, RouterModule ],
+  imports: [CommonModule, RouterModule],
   templateUrl: './admin-navbar.component.html',
   styleUrl: './admin-navbar.component.css',
 })
@@ -23,11 +23,11 @@ export class AdminNavbarComponent implements OnInit {
   // @Input() isAdminDropdownOpen: boolean = false;
   // @Input() isAdminLogged!: Observable<boolean>;
 
-  isAdminDropdownOpen: boolean = false
-  isAdminLogged!: Observable<boolean>
+  isAdminDropdownOpen: boolean = false;
+  isAdminLogged!: Observable<boolean>;
 
-  router = inject(Router)
-  adminLoginService = inject(AdminloginService)
+  router = inject(Router);
+  adminLoginService = inject(AdminloginService);
 
   adminMenuItems = [
     { name: 'Home' },
@@ -37,8 +37,7 @@ export class AdminNavbarComponent implements OnInit {
   ];
 
   ngOnInit() {
-
-    this.isAdminLogged = this.adminLoginService.adminlogged$
+    this.isAdminLogged = this.adminLoginService.adminlogged$;
   }
 
   // getAdminDetails(){
@@ -56,11 +55,9 @@ export class AdminNavbarComponent implements OnInit {
     console.log('Dropdown toggled:', this.isAdminDropdownOpen);
   };
 
-  adminLogOut(){
-
-    this.adminLoginService.adminLoggedOut()
-    this.router.navigate(['/admin'])
-    this.isAdminDropdownOpen = false
-
+  adminLogOut() {
+    this.adminLoginService.adminLoggedOut();
+    this.router.navigate(['/admin']);
+    this.isAdminDropdownOpen = false;
   }
 }

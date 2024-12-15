@@ -11,13 +11,12 @@ export const adminloggedOutGuard: CanActivateFn = (route, state) => {
 
   if (token) {
     console.log('Token exists, redirecting to /admin/dashboard');
-  
+
     if (router.url !== '/admin') {
       console.log('Redirecting to admin portal');
       router.navigate(['/admin/dashboard']);
     }
     return false;
-
   } else {
     console.log('Token does not exist, allowing access to /admin/login');
     return true;

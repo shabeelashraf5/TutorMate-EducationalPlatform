@@ -12,7 +12,6 @@ export class AdminloginService {
   private isAdminLoged = new BehaviorSubject<boolean>(this.hasAdminToken());
   adminlogged$ = this.isAdminLoged.asObservable();
 
-
   constructor(private http: HttpClient) {}
 
   login(
@@ -31,13 +30,13 @@ export class AdminloginService {
         message: string;
         admin: string;
         token: string;
-        role: string
+        role: string;
       }>(`${this.apiUrl}/admin/dashboard`, { email, password })
       .pipe(
         tap((response) => {
           if (response.success && response.role) {
             localStorage.setItem(this.token, response.token);
-            localStorage.setItem('role', response.role )
+            localStorage.setItem('role', response.role);
             this.isAdminLoged.next(true);
 
             console.log('Token:', response.token);
@@ -46,20 +45,17 @@ export class AdminloginService {
       );
   }
 
-
   adminLoggedOut() {
     localStorage.removeItem(this.token);
-    localStorage.removeItem('role')
+    localStorage.removeItem('role');
     this.isAdminLoged.next(false);
     console.log('Token after Admin logout:', this.getTokens());
   }
 
   getRoleStorage() {
-
-    const adminRole = localStorage.getItem('role')
-    console.log('Your Role is',adminRole)
-    return adminRole
-    
+    const adminRole = localStorage.getItem('role');
+    console.log('Your Role is', adminRole);
+    return adminRole;
   }
 
   getTokens() {

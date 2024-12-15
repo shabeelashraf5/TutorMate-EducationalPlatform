@@ -19,19 +19,15 @@ import { AdminloginService } from '../../../core/service/admin/adminlogin.servic
 })
 export class LoginComponent {
   // @Input() role: 'user' | 'admin' = 'user';
-
   // myForm!: FormGroup;
   // passwordInvalid: string = '';
   // emailInvalid: string = '';
-
   // private loginService = inject(LoginService);
   // private router = inject(Router);
   // private adminLoginService = inject(AdminloginService);
-
   // ngOnInit() {
   //   this.loginForm();
   // }
-
   // loginForm() {
   //   this.myForm = new FormGroup({
   //     email: new FormControl('', [Validators.email, Validators.required]),
@@ -41,13 +37,10 @@ export class LoginComponent {
   //     ]),
   //   });
   // }
-
   // loginIn() {
   //   this.passwordInvalid = '';
   //   this.emailInvalid = '';
-
   //   if (this.role === 'admin') {
-
   //     const adminDetails = this.myForm.value
   //     this.adminLoginService.login(adminDetails.email, adminDetails.password).subscribe({
   //       next: (response) => {
@@ -59,25 +52,19 @@ export class LoginComponent {
   //       error: (error) => {
   //         if (error.status === 400){
   //           this.passwordInvalid = 'Entered Password is Invalid';
-
   //         }else if( error.status === 401){
   //           this.emailInvalid = 'Invalid Email, Please register your account';
-
   //         }else{
   //           console.error('Unexpected Error:', error);
   //         }
   //       }
   //     })
-
   //   }
-
   //   if (this.myForm.invalid) {
   //     this.myForm.markAllAsTouched();
   //     return;
   //   }
-
   //   const userDetails = this.myForm.value;
-
   //   this.loginService.login(userDetails.email, userDetails.password).subscribe({
   //     next: (response) => {
   //       console.log('LoggedIn:', response);
@@ -96,16 +83,13 @@ export class LoginComponent {
   //     },
   //   });
   // }
-
   // loginIn() {
   //   this.passwordInvalid = '';
   //   this.emailInvalid = '';
-
   //   if (this.myForm.invalid) {
   //     this.myForm.markAllAsTouched();
   //     return;
   //   }
-
   //   // ** Admin Login Logic **
   //   if (this.role === 'admin') {
   //     const adminDetails = this.myForm.value;
@@ -128,11 +112,8 @@ export class LoginComponent {
   //           }
   //         },
   //       });
-
   //     return;
-
   //   }else if(this.role === 'user'){
-
   //   const userDetails = this.myForm.value;
   //   this.loginService.login(userDetails.email, userDetails.password).subscribe({
   //     next: (response) => {
@@ -151,6 +132,5 @@ export class LoginComponent {
   //     },
   //   });
   // }
-
   // }
 }
