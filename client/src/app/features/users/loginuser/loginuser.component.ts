@@ -10,11 +10,12 @@ import { LoginService } from '../../../core/service/users/login/login.service';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../../../shared/components/login/login.component';
 import { AdminloginService } from '../../../core/service/admin/adminlogin.service';
+import { NavbarComponent } from '../../../shared/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-loginuser',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, NavbarComponent],
   templateUrl: './loginuser.component.html',
   styleUrl: './loginuser.component.css',
 })

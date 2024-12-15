@@ -24,6 +24,9 @@ export class User extends Document {
   @Prop({ type: String, isRequired: true })
   location: string;
 
+  @Prop({ type: String, required: true })
+  class: string;
+
   @Prop({ type: String, default: 'user' })
   role: string;
 }

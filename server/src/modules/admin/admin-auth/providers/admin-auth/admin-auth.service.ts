@@ -3,6 +3,7 @@ import { AdminUserService } from 'src/modules/admin/admin-user/providers/admin-u
 import { AdminRegisterDto } from '../../dto/ad-register.dto';
 import { AdminLoginDto } from '../../dto/ad-login.dto';
 import { JwtAuthService } from 'src/modules/auth/providers/jwt-auth/jwt-auth.service';
+import { RegisterDto } from 'src/modules/auth/dto/register.dto';
 
 @Injectable()
 export class AdminAuthService {
@@ -45,6 +46,16 @@ export class AdminAuthService {
       admin: adminLogin,
       token: accessToken,
       role: adminLogin.role,
+    };
+  }
+
+  async displayUserDetails(userDetailsDto: RegisterDto) {
+    const userDetail = await this.adminUser.findAllUsers(userDetailsDto);
+
+    return {
+      success: true,
+      message: 'All Users displayed successfully',
+      users: userDetail,
     };
   }
 }

@@ -38,6 +38,10 @@ export class RegisterDto {
   location: string;
 
   @IsString()
+  @IsNotEmpty()
+  class: string;
+
+  @IsString()
   @IsOptional()
   role?: string;
 }

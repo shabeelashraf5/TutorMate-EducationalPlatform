@@ -1,11 +1,13 @@
+<app-navbar></app-navbar>
 <div class="flex-grow">
   <div
-    class="max-w-lg mx-auto md:mt-36 mt-12 p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+    class="max-w-lg mx-auto mt-5 md:mt-12 p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
   >
     <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
       Register
     </h2>
     <form [formGroup]="myForms" (ngSubmit)="submitForm()">
+
       <!-- Email -->
       <div class="relative z-0 w-full mb-5 group">
         <input
@@ -107,6 +109,29 @@
           <small>Passwords do not match.</small>
         </div>
       </div>
+
+        <!-- Dropdown for Class (I to XII) -->
+  <div class="relative z-0 w-full mb-5 group">
+    <select
+      name="class"
+      formControlName="class"
+      id="floating_class"
+      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+      required
+    >
+      <option value="" disabled selected>Select Class</option>
+      <option *ngFor="let cls of classes" >{{ cls.label }}</option>
+    </select>
+    <label
+      for="floating_class"
+      class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      >Select Class</label
+    >
+    <div *ngIf="myForms.get('class')?.invalid && myForms.get('class')?.touched" class="text-red-600 font-bold">
+      <small *ngIf="myForms.get('class')?.errors?.['required']">Class is required.</small>
+    </div>
+  </div>
+
       <!-- First Name and Last Name -->
       <div class="grid md:grid-cols-2 md:gap-6">
         <div class="relative z-0 w-full mb-5 group">
@@ -219,6 +244,25 @@
           </div>
         </div>
       </div>
+      
+       <!-- Image Upload -->
+  <div class="relative z-0 w-full mb-5 group">
+    <input
+      type="file"
+      name="image"
+      (change)="onFileChange($event)"
+      id="image"
+      class="block w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none"
+    />
+    <label for="image" class="block mt-2 text-sm text-gray-500">Upload Profile Image</label>
+
+    <!-- Default Image Preview -->
+    <img
+      [src]="previewImage || 'image.jpg'"
+      alt="Default Image"
+      class="w-20 h-20 rounded-full mt-4"
+    />
+  </div>
       <!-- Submit Button -->
       <button
         type="submit"
