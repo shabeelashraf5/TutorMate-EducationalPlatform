@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import jwtConfig from 'src/config/jwt.config';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { JwtAuthService } from './providers/jwt-auth/jwt-auth.service';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   controllers: [AuthController],
@@ -15,6 +16,7 @@ import { JwtAuthService } from './providers/jwt-auth/jwt-auth.service';
     forwardRef(() => UsersModule),
     ConfigModule.forFeature(jwtConfig),
     JwtModule.registerAsync(jwtConfig.asProvider()),
+    MulterModule.register({ dest: './uploads' }),
   ],
 })
 export class AuthModule {}

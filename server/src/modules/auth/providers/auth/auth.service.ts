@@ -11,7 +11,7 @@ export class AuthService {
     private readonly jwtAuthService: JwtAuthService,
   ) {}
 
-  async register(registerDto: RegisterDto) {
+  async register(registerDto: RegisterDto, file: Express.Multer.File) {
     try {
       const { email } = registerDto;
 
@@ -21,7 +21,14 @@ export class AuthService {
         throw new HttpException('Email Already Used', HttpStatus.BAD_REQUEST);
       }
 
-      const user = await this.userService.createUser(registerDto);
+      const imagePath = file
+        ? `/uploads/images/${file.filename}`
+        : 'http://localhost:3000/uploads/images/image.jpg';
+
+      const user = await this.userService.createUser({
+        ...registerDto,
+        image: imagePath,
+      });
 
       return { success: true, message: 'User registered successfully', user };
     } catch (error) {

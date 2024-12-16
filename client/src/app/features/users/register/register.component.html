@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="flex-grow">
   <div
-    class="max-w-lg mx-auto mt-5 md:mt-12 p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+    class="max-w-lg mx-auto mt-5 md:mt-5 p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
   >
     <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
       Register
@@ -250,6 +250,7 @@
     <input
       type="file"
       name="image"
+      formControlName="image" 
       (change)="onFileChange($event)"
       id="image"
       class="block w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none"

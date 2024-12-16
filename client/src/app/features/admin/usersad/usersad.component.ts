@@ -37,7 +37,19 @@ export class UsersadComponent implements OnInit {
       }
     })
 
+  }
 
+  getImageUrl(imagePath: string): string {
+    const defaultImageUrl = 'http://localhost:3000/uploads/images/image.jpg';
+    if (!imagePath) {
+      return defaultImageUrl; 
+    }
+
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+      return imagePath; 
+    }
+  
+    return `http://localhost:3000${imagePath}`;
   }
 
   openDialog(action: string) {

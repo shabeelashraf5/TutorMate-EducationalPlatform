@@ -5,6 +5,8 @@ import { AuthModule } from './modules/auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AdminAuthModule } from './modules/admin/admin-auth/admin-auth.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -19,9 +21,12 @@ import { AdminAuthModule } from './modules/admin/admin-auth/admin-auth.module';
         dbName: configService.get<string>('DATABASE_NAME'),
       }),
     }),
-
     AuthModule,
     AdminAuthModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+      serveRoot: '/uploads',
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

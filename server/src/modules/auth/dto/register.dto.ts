@@ -44,4 +44,7 @@ export class RegisterDto {
   @IsString()
   @IsOptional()
   role?: string;
+
+  @IsOptional()
+  image?: string;
 }
