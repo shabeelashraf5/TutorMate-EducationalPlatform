@@ -11,6 +11,9 @@ import { LoginuserComponent } from './features/users/loginuser/loginuser.compone
 import { adminloggedOutGuard } from './core/guards/admin/adminlogged-out.guard';
 import { adminloggedInGuard } from './core/guards/admin/adminlogged-in.guard';
 import { QuizComponent } from './features/users/quiz/quiz.component';
+import { StudymaterialComponent } from './features/users/studymaterial/studymaterial.component';
+import { FoldersComponent } from './features/users/folders/folders.component';
+import { DocumentsComponent } from './features/admin/documents/documents.component';
 
 export const routes: Routes = [
   {
@@ -31,6 +34,8 @@ export const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent, canActivate: [loggedInGuard] },
       { path: 'quiz', component: QuizComponent, canActivate: [loggedInGuard] },
+      { path: 'material', component: FoldersComponent, canActivate: [loggedInGuard]  },
+      { path: 'questions', component: StudymaterialComponent, canActivate: [loggedInGuard]  }
     ],
   },
 
@@ -54,6 +59,14 @@ export const routes: Routes = [
         component: UsersadComponent,
         canActivate: [adminloggedInGuard],
       },
+
+      {
+        path: 'documents',
+        component: DocumentsComponent,
+        canActivate: [adminloggedInGuard],
+
+      },
+
       { path: '**', redirectTo: 'login', pathMatch: 'full' },
     ],
   },

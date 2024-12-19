@@ -8,20 +8,12 @@ import { NavbarComponent } from '../../../../shared/components/navbar/navbar.com
 @Component({
   selector: 'app-user-navbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './user-navbar.component.html',
   styleUrl: './user-navbar.component.css',
 })
 export class UserNavbarComponent {
-  // @Input() menuItems: { name: string }[] = [];
-  // @Input() isFname: string | null = '';
-  // @Input() isLname: string | null = '';
-  // @Input() isEmail: string | null = '';
-  // @Input() toggleDropdown: Function = () => {};
-  // @Input() logOut: Function = () => {};
-  // @Input() isDropdownOpen: boolean = false;
-  // @Input() isLogged!: Observable<boolean>;
-
+ 
   isDropdownOpen: boolean = false;
 
   isLogged!: Observable<boolean>;
@@ -30,9 +22,9 @@ export class UserNavbarComponent {
   isLname!: string | null;
 
   menuItems = [
-    { name: 'Home' },
-    { name: 'About' },
-    { name: 'Services' },
+    { name: 'Home', path: '/users/home' },
+    { name: 'Study Material', path: '/users/material' },
+    { name: 'Quiz', path: '/users/quiz' },
     { name: 'Contact' },
   ];
 
