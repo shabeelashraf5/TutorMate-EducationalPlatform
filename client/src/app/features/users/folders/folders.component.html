@@ -1,23 +1,47 @@
 <app-user-navbar></app-user-navbar>
 
-<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5">
-    <div *ngFor="let list of folderDetails" class="cursor-pointer text-center">
-      <a routerLink="/users/questions" role="button">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 mx-auto" viewBox="0 0 48 48">
-          <linearGradient id="Om5yvFr6YrdlC0q2Vet0Ha_WWogVNJDSfZ5_gr1" x1="-7.018" x2="39.387" y1="9.308" y2="33.533" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#fac017"></stop>
-            <stop offset=".909" stop-color="#e1ab2d"></stop>
-          </linearGradient>
-          <path fill="url(#Om5yvFr6YrdlC0q2Vet0Ha_WWogVNJDSfZ5_gr1)" d="M44.5,41h-41C2.119,41,1,39.881,1,38.5v-31C1,6.119,2.119,5,3.5,5h11.597	c1.519,0,2.955,0.69,3.904,1.877L21.5,10h23c1.381,0,2.5,1.119,2.5,2.5v26C47,39.881,45.881,41,44.5,41z"></path>
-          <linearGradient id="Om5yvFr6YrdlC0q2Vet0Hb_WWogVNJDSfZ5_gr2" x1="5.851" x2="18.601" y1="9.254" y2="27.39" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#fbfef3"></stop>
-            <stop offset=".909" stop-color="#e2e4e3"></stop>
-          </linearGradient>
-          <path fill="url(#Om5yvFr6YrdlC0q2Vet0Hb_WWogVNJDSfZ5_gr2)" d="M2,25h20V11H4c-1.105,0-2,0.895-2,2V25z"></path>
-        </svg>
-        <span class="text-sm font-medium mt-2 block">{{list.title}}</span>
-      </a>
-    </div>
+<div
+  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5"
+>
+  <div *ngFor="let list of folderDetails" class="cursor-pointer text-center">
+    <a routerLink="/users/questions" role="button">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-16 h-16 mx-auto"
+        viewBox="0 0 48 48"
+      >
+        <linearGradient
+          id="Om5yvFr6YrdlC0q2Vet0Ha_WWogVNJDSfZ5_gr1"
+          x1="-7.018"
+          x2="39.387"
+          y1="9.308"
+          y2="33.533"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0" stop-color="#fac017"></stop>
+          <stop offset=".909" stop-color="#e1ab2d"></stop>
+        </linearGradient>
+        <path
+          fill="url(#Om5yvFr6YrdlC0q2Vet0Ha_WWogVNJDSfZ5_gr1)"
+          d="M44.5,41h-41C2.119,41,1,39.881,1,38.5v-31C1,6.119,2.119,5,3.5,5h11.597	c1.519,0,2.955,0.69,3.904,1.877L21.5,10h23c1.381,0,2.5,1.119,2.5,2.5v26C47,39.881,45.881,41,44.5,41z"
+        ></path>
+        <linearGradient
+          id="Om5yvFr6YrdlC0q2Vet0Hb_WWogVNJDSfZ5_gr2"
+          x1="5.851"
+          x2="18.601"
+          y1="9.254"
+          y2="27.39"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0" stop-color="#fbfef3"></stop>
+          <stop offset=".909" stop-color="#e2e4e3"></stop>
+        </linearGradient>
+        <path
+          fill="url(#Om5yvFr6YrdlC0q2Vet0Hb_WWogVNJDSfZ5_gr2)"
+          d="M2,25h20V11H4c-1.105,0-2,0.895-2,2V25z"
+        ></path>
+      </svg>
+      <span class="text-sm font-medium mt-2 block">{{ list.title }}</span>
+    </a>
   </div>
-  
-  
+</div>

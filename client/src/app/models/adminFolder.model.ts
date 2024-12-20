@@ -1,6 +1,4 @@
 export interface Folder {
-
-    title: string
-    class: string
-    
+  title: string;
+  class: string;
 }

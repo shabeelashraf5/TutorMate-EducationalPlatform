@@ -7,8 +7,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [UserNavbarComponent],
   templateUrl: './studymaterial.component.html',
-  styleUrl: './studymaterial.component.css'
+  styleUrl: './studymaterial.component.css',
 })
-export class StudymaterialComponent {
-
-}
+export class StudymaterialComponent {}

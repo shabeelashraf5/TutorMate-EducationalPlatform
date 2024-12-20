@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
     { value: '9', label: 'Class IX' },
     { value: '10', label: 'Class X' },
     { value: '11', label: 'Class XI' },
-    { value: '12', label: 'Class XII' }
+    { value: '12', label: 'Class XII' },
   ];
 
   ngOnInit() {
@@ -68,7 +68,7 @@ export class RegisterComponent implements OnInit {
         this.previewImage = reader.result;
       };
       reader.readAsDataURL(file);
-  
+
       // No need to patch value for file input, just store it separately
       this.selectedFile = file;
     }
@@ -91,75 +91,76 @@ export class RegisterComponent implements OnInit {
         phone: new FormControl('', [Validators.required]),
         location: new FormControl('', [Validators.required]),
         class: new FormControl('', [Validators.required]),
-        image: new FormControl('', )
+        image: new FormControl(''),
       },
       { validators: passwordMatchValidator }
     );
   }
 
-//   submitForm() {
-//     if (this.myForms.invalid) {
-//       this.myForms.markAllAsTouched();
-//     } else {
-//       const formValue: Register = this.myForms.value;
+  //   submitForm() {
+  //     if (this.myForms.invalid) {
+  //       this.myForms.markAllAsTouched();
+  //     } else {
+  //       const formValue: Register = this.myForms.value;
 
-//       console.log('Submitting form with values:', formValue);
-//       this.userService.registerUser(formValue).subscribe({
-//         next: (response) => {
-//           console.log('User registered successfully', response);
-//           this.router.navigate(['/']);
-//         },
-//         error: (error) => {
-//           if (error.status === 400) {
-//             this.existEmail = 'Email alreadt exit. Please try different Email';
-//           }
-//           console.error('Error Occured', error);
-//         },
-//       });
-//     }
-//   }
+  //       console.log('Submitting form with values:', formValue);
+  //       this.userService.registerUser(formValue).subscribe({
+  //         next: (response) => {
+  //           console.log('User registered successfully', response);
+  //           this.router.navigate(['/']);
+  //         },
+  //         error: (error) => {
+  //           if (error.status === 400) {
+  //             this.existEmail = 'Email alreadt exit. Please try different Email';
+  //           }
+  //           console.error('Error Occured', error);
+  //         },
+  //       });
+  //     }
+  //   }
 
-submitForm() {
-  // Check if the form is invalid
-  if (this.myForms.invalid) {
-    this.myForms.markAllAsTouched(); // Mark all fields as touched to trigger validation messages
-    return;
+  submitForm() {
+    // Check if the form is invalid
+    if (this.myForms.invalid) {
+      this.myForms.markAllAsTouched(); // Mark all fields as touched to trigger validation messages
+      return;
+    }
+
+    // Create a FormData object to send the data with the file
+    const formData = new FormData();
+
+    // Append all form fields to the FormData object
+    formData.append('fname', this.myForms.get('fname')?.value);
+    formData.append('lname', this.myForms.get('lname')?.value);
+    formData.append('email', this.myForms.get('email')?.value);
+    formData.append('password', this.myForms.get('password')?.value);
+    formData.append(
+      'repeat_password',
+      this.myForms.get('repeat_password')?.value
+    );
+    formData.append('phone', this.myForms.get('phone')?.value);
+    formData.append('location', this.myForms.get('location')?.value);
+    formData.append('class', this.myForms.get('class')?.value);
+
+    // Append the selected file if any
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile, this.selectedFile.name);
+    }
+
+    // Submit the FormData object
+    this.userService.registerUser(formData).subscribe({
+      next: (response) => {
+        console.log('User registered successfully', response);
+        this.router.navigate(['/']); // Navigate after successful registration
+      },
+      error: (error) => {
+        // Handle error (e.g., if the email already exists)
+        if (error.status === 400) {
+          this.existEmail =
+            'Email already exists. Please try a different email.';
+        }
+        console.error('Error occurred', error);
+      },
+    });
   }
-
-  // Create a FormData object to send the data with the file
-  const formData = new FormData();
-
-  // Append all form fields to the FormData object
-  formData.append('fname', this.myForms.get('fname')?.value);
-  formData.append('lname', this.myForms.get('lname')?.value);
-  formData.append('email', this.myForms.get('email')?.value);
-  formData.append('password', this.myForms.get('password')?.value);
-  formData.append('repeat_password', this.myForms.get('repeat_password')?.value);
-  formData.append('phone', this.myForms.get('phone')?.value);
-  formData.append('location', this.myForms.get('location')?.value);
-  formData.append('class', this.myForms.get('class')?.value);
-
-  // Append the selected file if any
-  if (this.selectedFile) {
-    formData.append('image', this.selectedFile, this.selectedFile.name);
-  }
-
-  // Submit the FormData object
-  this.userService.registerUser(formData).subscribe({
-    next: (response) => {
-      console.log('User registered successfully', response);
-      this.router.navigate(['/']); // Navigate after successful registration
-    },
-    error: (error) => {
-      // Handle error (e.g., if the email already exists)
-      if (error.status === 400) {
-        this.existEmail = 'Email already exists. Please try a different email.';
-      }
-      console.error('Error occurred', error);
-    },
-  });
 }
-
-}
-
-

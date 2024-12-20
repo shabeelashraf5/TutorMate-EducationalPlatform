@@ -11,30 +11,23 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [UserNavbarComponent, RouterLink, CommonModule],
   templateUrl: './folders.component.html',
-  styleUrl: './folders.component.css'
+  styleUrl: './folders.component.css',
 })
 export class FoldersComponent implements OnInit, CommonModule {
+  folderDetails: Folder[] = [];
 
-  folderDetails: Folder[] = []
-
-  constructor(private folderService: AdfolderService){}
+  constructor(private folderService: AdfolderService) {}
 
   ngOnInit() {
-
-    this.loadFolder()
-    
+    this.loadFolder();
   }
 
-  loadFolder(){
-
+  loadFolder() {
     this.folderService.displayFolder().subscribe({
       next: (response) => {
-        this.folderDetails = response.folder
-        console.log(this.folderDetails)
-      }
-    })
+        this.folderDetails = response.folder;
+        console.log(this.folderDetails);
+      },
+    });
   }
-
-  
-
 }

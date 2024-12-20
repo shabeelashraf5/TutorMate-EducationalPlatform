@@ -34,8 +34,16 @@ export const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent, canActivate: [loggedInGuard] },
       { path: 'quiz', component: QuizComponent, canActivate: [loggedInGuard] },
-      { path: 'material', component: FoldersComponent, canActivate: [loggedInGuard]  },
-      { path: 'questions', component: StudymaterialComponent, canActivate: [loggedInGuard]  }
+      {
+        path: 'material',
+        component: FoldersComponent,
+        canActivate: [loggedInGuard],
+      },
+      {
+        path: 'questions',
+        component: StudymaterialComponent,
+        canActivate: [loggedInGuard],
+      },
     ],
   },
 
@@ -64,7 +72,6 @@ export const routes: Routes = [
         path: 'documents',
         component: DocumentsComponent,
         canActivate: [adminloggedInGuard],
-
       },
 
       { path: '**', redirectTo: 'login', pathMatch: 'full' },

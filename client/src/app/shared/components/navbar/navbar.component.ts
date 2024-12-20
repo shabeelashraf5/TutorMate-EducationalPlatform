@@ -10,6 +10,4 @@ import { Observable } from 'rxjs';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent {
-  
-}
+export class NavbarComponent {}

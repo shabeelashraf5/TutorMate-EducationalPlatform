@@ -4,17 +4,14 @@ import { Register } from '../../../../models/register.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdusersService {
-
   private apiUrl = 'http://localhost:3000/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  displayUserDetails(): Observable<any>{
-    return this.http.get(`${this.apiUrl}/admin/users`)
+  displayUserDetails(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/admin/users`);
   }
-
-
 }

@@ -13,7 +13,6 @@ import { NavbarComponent } from '../../../../shared/components/navbar/navbar.com
   styleUrl: './user-navbar.component.css',
 })
 export class UserNavbarComponent {
- 
   isDropdownOpen: boolean = false;
 
   isLogged!: Observable<boolean>;

@@ -11,44 +11,37 @@ import { Register } from '../../../models/register.model';
   styleUrl: './usersad.component.css',
 })
 export class UsersadComponent implements OnInit {
-
   showDialog: boolean = false;
   dialogTitle: string = '';
   dialogMessage: string = '';
   actionType: string = '';
-  userDetails: Register[] = []
+  userDetails: Register[] = [];
 
-  useradService = inject(AdusersService)
+  useradService = inject(AdusersService);
 
   ngOnInit() {
-
-    this.loadUsers()
-    
+    this.loadUsers();
   }
 
-
-  loadUsers(){
-
+  loadUsers() {
     this.useradService.displayUserDetails().subscribe({
       next: (response) => {
-
-        this.userDetails = response.users
-        console.log('Load Users Response',this.userDetails)
-      }
-    })
-
+        this.userDetails = response.users;
+        console.log('Load Users Response', this.userDetails);
+      },
+    });
   }
 
   getImageUrl(imagePath: string): string {
     const defaultImageUrl = 'http://localhost:3000/uploads/images/image.jpg';
     if (!imagePath) {
-      return defaultImageUrl; 
+      return defaultImageUrl;
     }
 
     if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-      return imagePath; 
+      return imagePath;
     }
-  
+
     return `http://localhost:3000${imagePath}`;
   }
 

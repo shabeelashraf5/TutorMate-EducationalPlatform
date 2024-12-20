@@ -7,6 +7,6 @@ export interface Register {
   repeat_password: string;
   phone: string;
   location: string;
-  class: string; 
-  image: string
+  class: string;
+  image: string;
 }

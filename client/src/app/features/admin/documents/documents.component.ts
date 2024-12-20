@@ -2,7 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { AdfolderService } from '../../../core/service/admin/adFolder/adfolder.service';
 import { Folder } from '../../../models/adminFolder.model';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -10,44 +15,35 @@ import { Router, RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './documents.component.html',
-  styleUrl: './documents.component.css'
+  styleUrl: './documents.component.css',
 })
 export class DocumentsComponent implements OnInit {
+  isModalOpen = false;
+  folderDetails: Folder[] = [];
+  formData!: FormGroup;
 
-  isModalOpen = false; 
-  folderDetails: Folder[] = []
-  formData!: FormGroup
-
-
-  folderService = inject(AdfolderService)
-  router = inject(Router)
-
+  folderService = inject(AdfolderService);
+  router = inject(Router);
 
   ngOnInit() {
-    this.myForm()
-    this.loadFolder()
+    this.myForm();
+    this.loadFolder();
   }
 
   loadFolder() {
-
     this.folderService.displayFolder().subscribe({
       next: (response) => {
-        this.folderDetails = response.folder
-        console.log(this.folderDetails)
-
-      }
-
-    })
-
-
+        this.folderDetails = response.folder;
+        console.log(this.folderDetails);
+      },
+    });
   }
 
   myForm() {
-
     this.formData = new FormGroup({
       title: new FormControl('', [Validators.required]),
-      class: new FormControl('', [Validators.required])
-    })
+      class: new FormControl('', [Validators.required]),
+    });
   }
 
   classes = [
@@ -62,36 +58,31 @@ export class DocumentsComponent implements OnInit {
     { value: '9', label: 'Class IX' },
     { value: '10', label: 'Class X' },
     { value: '11', label: 'Class XI' },
-    { value: '12', label: 'Class XII' }
+    { value: '12', label: 'Class XII' },
   ];
-  
+
   toggleModal() {
     this.isModalOpen = !this.isModalOpen;
   }
 
-  createFolder(){
-
+  createFolder() {
     if (this.formData.invalid) {
       console.log('Form is invalid');
       return;
     }
-    
-    const folderData: Folder = this.formData.value
 
+    const folderData: Folder = this.formData.value;
 
     this.folderService.createFolder(folderData).subscribe({
       next: (response) => {
-        this.router.navigate(['/admin/documents'])
-        this.loadFolder()
-        this.isModalOpen = false
-        console.log(response)
-      }, error: (error) => {
-
-        console.log(error)
-
-      }
-    })
+        this.router.navigate(['/admin/documents']);
+        this.loadFolder();
+        this.isModalOpen = false;
+        console.log(response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
-
-
 }
