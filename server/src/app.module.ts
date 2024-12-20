@@ -7,6 +7,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AdminAuthModule } from './modules/admin/admin-auth/admin-auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { FolderModule } from './modules/folder/folder.module';
+import { AdminFolderModule } from './modules/admin/admin-folder/admin-folder.module';
 
 @Module({
   imports: [
@@ -23,6 +25,8 @@ import { join } from 'path';
     }),
     AuthModule,
     AdminAuthModule,
+    FolderModule,
+    AdminFolderModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),
       serveRoot: '/uploads',
