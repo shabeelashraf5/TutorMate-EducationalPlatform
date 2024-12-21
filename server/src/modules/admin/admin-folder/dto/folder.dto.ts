@@ -8,4 +8,8 @@ export class FolderDto {
   @IsString()
   @IsNotEmpty()
   class: string;
+
+  @IsNotEmpty()
+  @IsString()
+  userid: string;
 }
