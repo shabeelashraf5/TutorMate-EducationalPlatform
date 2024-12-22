@@ -9,7 +9,7 @@ export class FolderDto {
   @IsNotEmpty()
   class: string;
 
-  @IsNotEmpty()
-  @IsString()
-  userid: string;
+  // @IsNotEmpty()
+  // @IsString()
+  // userid: string;
 }

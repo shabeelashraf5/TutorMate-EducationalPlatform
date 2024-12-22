@@ -26,4 +26,16 @@ export class AdminFolderService {
       folder: folderDetails,
     };
   }
+
+  async displayUserFolder(userClass: string) {
+    console.log('Folder from userClass', userClass);
+    const userFolder = await this.folderService.userFolder(userClass);
+    console.log('Folder from userFolder', userFolder);
+
+    return {
+      success: true,
+      message: 'The folder has been displayed as per classes',
+      folder: userFolder,
+    };
+  }
 }

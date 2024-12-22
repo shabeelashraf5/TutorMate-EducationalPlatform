@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { AdfolderService } from '../../../core/service/admin/adFolder/adfolder.service';
 import { Folder } from '../../../models/adminFolder.model';
 import { CommonModule } from '@angular/common';
+import { UserfolderService } from '../../../core/service/users/userFolder/userfolder.service';
 
 @Component({
   selector: 'app-folders',
@@ -16,14 +17,14 @@ import { CommonModule } from '@angular/common';
 export class FoldersComponent implements OnInit, CommonModule {
   folderDetails: Folder[] = [];
 
-  constructor(private folderService: AdfolderService) {}
+  constructor(private folderService: UserfolderService) {}
 
   ngOnInit() {
     this.loadFolder();
   }
 
   loadFolder() {
-    this.folderService.displayFolder().subscribe({
+    this.folderService.displayUserFolder().subscribe({
       next: (response) => {
         this.folderDetails = response.folder;
         console.log(this.folderDetails);

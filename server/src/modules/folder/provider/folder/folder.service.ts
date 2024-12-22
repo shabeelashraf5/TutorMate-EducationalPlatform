@@ -16,4 +16,13 @@ export class FolderService {
   async findFolder(folderDto: FolderDto) {
     return this.folderModel.find(folderDto).exec();
   }
+
+  async userFolder(userClass: string) {
+    try {
+      return await this.folderModel.find({ class: userClass }).exec();
+    } catch (error) {
+      console.error('Error fetching folders:', error);
+      throw new Error('Could not fetch folders.');
+    }
+  }
 }
