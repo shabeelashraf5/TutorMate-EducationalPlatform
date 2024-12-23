@@ -1,7 +1,6 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AdminFolderService } from './provider/admin-folder/admin-folder.service';
 import { FolderDto } from './dto/folder.dto';
-import { JwtauthGuard } from 'src/modules/auth/guards/jwtauth/jwtauth.guard';
 
 @Controller('api')
 export class AdminFolderController {
@@ -20,25 +19,14 @@ export class AdminFolderController {
     return response;
   }
 
-  @UseGuards(JwtauthGuard)
-  @Get('users/material')
-  async userDisplayFolder(@Req() req: any) {
-    // console.log('Request user:', req.user);
-    // const userClass = req.user?.class;
-    // const response = this.adminFolder.displayUserFolder(userClass);
-    // console.log('Response from userDisplayFolder', response);
-    // return response;
-    const userClass = req.user?.class;
-
-    if (!userClass) {
-      return {
-        success: false,
-        message: 'User class not found in request.',
-        folder: [],
-      };
-    }
-
-    const response = await this.adminFolder.displayUserFolder(userClass);
+  //@UseGuards(JwtauthGuard)
+  @Get('users/:id/material')
+  async userDisplayFolder(@Param('id') id: string) {
+    const response = await this.adminFolder.displayUserFolder(id);
+    console.log(
+      'Response to check if folder are displaying',
+      JSON.stringify(response, null, 2),
+    );
     return response;
   }
 }

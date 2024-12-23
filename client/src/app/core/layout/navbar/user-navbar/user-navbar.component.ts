@@ -1,5 +1,5 @@
-import { Component, computed, inject, Input, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, computed, Inject, inject, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginService } from '../../../service/users/login/login.service';
 import { CommonModule } from '@angular/common';
@@ -12,30 +12,43 @@ import { NavbarComponent } from '../../../../shared/components/navbar/navbar.com
   templateUrl: './user-navbar.component.html',
   styleUrl: './user-navbar.component.css',
 })
-export class UserNavbarComponent {
+export class UserNavbarComponent implements OnInit {
+
   isDropdownOpen: boolean = false;
+  userId!: string | null 
 
   isLogged!: Observable<boolean>;
   isEmail!: string | null;
   isFname!: string | null;
   isLname!: string | null;
 
-  menuItems = [
-    { name: 'Home', path: '/users/home' },
-    { name: 'Study Material', path: '/users/material' },
-    { name: 'Quiz', path: '/users/quiz' },
-    { name: 'Contact' },
-  ];
+  private loginService = inject(LoginService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute)
 
   //isLogged = computed(() => this.loginService.isLogged())
 
-  private loginService = inject(LoginService);
-  private router = inject(Router);
 
   ngOnInit() {
+
     this.isLogged = this.loginService.loggedIn$;
+
+    this.userId = this.loginService.getUserLoggedId();
+    console.log('the User ID from Navbar', this.userId)
+
     this.getDetails();
   }
+
+
+  get menuItems() {
+    return [
+    { name: 'Home', path: '/users/home' },
+    { name: 'Study Material', path: `/users/${this.userId}/material` },
+    { name: 'Quiz', path: '/users/quiz' },
+    { name: 'Contact' }
+    ]
+  };
+
 
   getDetails() {
     this.loginService.users$.subscribe({

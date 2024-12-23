@@ -27,10 +27,8 @@ export class AdminFolderService {
     };
   }
 
-  async displayUserFolder(userClass: string) {
-    console.log('Folder from userClass', userClass);
-    const userFolder = await this.folderService.userFolder(userClass);
-    console.log('Folder from userFolder', userFolder);
+  async displayUserFolder(userId: string) {
+    const userFolder = await this.folderService.userFolder(userId);
 
     return {
       success: true,

@@ -11,6 +11,8 @@ export class LoginService {
   private tokenKey = 'token';
   //private emailKey = 'email';
   private userKey = 'user';
+  private loggedInUserId: string = this.getUserIdFromStorage();
+  private userIdKey = 'loggedInUserId';
 
   private isLogged = new BehaviorSubject<boolean>(this.hasToken());
   loggedIn$ = this.isLogged.asObservable();
@@ -38,7 +40,7 @@ export class LoginService {
     message: string;
     token: string;
     role: string;
-    users: { email: string; fname: string; lname: string };
+    users: { email: string; fname: string; lname: string, _id: string };
   }> {
     return this.http
       .post<{
@@ -46,13 +48,16 @@ export class LoginService {
         message: string;
         token: string;
         role: string;
-        users: { email: string; fname: string; lname: string };
+        users: { email: string; fname: string; lname: string; _id: string };
       }>(`${this.apiUrl}/home`, { email, password })
       .pipe(
         tap((response) => {
           console.log('Login Response', response);
           console.log('User Role:', response.role);
           if (response.success && response.role) {
+            this.loggedInUserId = response.users._id
+            localStorage.setItem(this.userIdKey, this.loggedInUserId); 
+            console.log('This is logged In User ID:', this.loggedInUserId)
             localStorage.setItem(this.tokenKey, response.token);
             localStorage.setItem('email', response.users.email);
             localStorage.setItem('fname', response.users.fname);
@@ -78,6 +83,7 @@ export class LoginService {
     localStorage.removeItem('fname');
     localStorage.removeItem('lname');
     localStorage.removeItem('role');
+    localStorage.removeItem(this.userIdKey);
     //localStorage.clear();
     this.isLogged.next(false);
     this.isUsers.next({ email: null, fname: null, lname: null });
@@ -108,6 +114,16 @@ export class LoginService {
     console.log('Retrieved Token:', token);
     return token;
   }
+
+  getUserLoggedId() {
+    const id =  this.loggedInUserId;
+    console.log('Get User LoogedID from Login Service', id)
+    return id
+  }
+ 
+  getUserIdFromStorage(): string {
+  return localStorage.getItem(this.userIdKey) || ''; // Retrieve ID from localStorage
+}
 
   private hasToken(): boolean {
     return !!this.getToken();

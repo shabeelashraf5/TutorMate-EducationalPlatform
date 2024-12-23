@@ -35,7 +35,7 @@ export const routes: Routes = [
       { path: 'home', component: HomeComponent, canActivate: [loggedInGuard] },
       { path: 'quiz', component: QuizComponent, canActivate: [loggedInGuard] },
       {
-        path: 'material',
+        path: ':id/material',
         component: FoldersComponent,
         canActivate: [loggedInGuard],
       },

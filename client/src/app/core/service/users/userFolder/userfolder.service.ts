@@ -11,8 +11,8 @@ export class UserfolderService {
 
   constructor(private http: HttpClient) {}
 
-  displayUserFolder(): Observable<any>{
-    return this.http.get(`${this.apiUrl}/material`); 
+  displayUserFolder(userId: string): Observable<any>{
+    return this.http.get(`${this.apiUrl}/${userId}/material`); 
   }
 
 
