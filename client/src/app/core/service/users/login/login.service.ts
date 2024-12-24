@@ -11,7 +11,7 @@ export class LoginService {
   private tokenKey = 'token';
   //private emailKey = 'email';
   private userKey = 'user';
-  private loggedInUserId: string = this.getUserIdFromStorage();
+  loggedInUserId: string = this.getUserIdFromStorage();
   private userIdKey = 'loggedInUserId';
 
   private isLogged = new BehaviorSubject<boolean>(this.hasToken());
@@ -116,12 +116,10 @@ export class LoginService {
   }
 
   getUserLoggedId() {
-    const id =  this.loggedInUserId;
-    console.log('Get User LoogedID from Login Service', id)
-    return id
+    return this.loggedInUserId || this.getUserIdFromStorage(); 
   }
  
-  getUserIdFromStorage(): string {
+  private getUserIdFromStorage(): string {
   return localStorage.getItem(this.userIdKey) || ''; // Retrieve ID from localStorage
 }
 

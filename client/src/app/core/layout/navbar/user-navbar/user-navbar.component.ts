@@ -15,7 +15,7 @@ import { NavbarComponent } from '../../../../shared/components/navbar/navbar.com
 export class UserNavbarComponent implements OnInit {
 
   isDropdownOpen: boolean = false;
-  userId!: string | null 
+  //userId: string = '67604f00371b9b63f3ad02a9'
 
   isLogged!: Observable<boolean>;
   isEmail!: string | null;
@@ -24,8 +24,7 @@ export class UserNavbarComponent implements OnInit {
 
   private loginService = inject(LoginService);
   private router = inject(Router);
-  private route = inject(ActivatedRoute)
-
+  
   //isLogged = computed(() => this.loginService.isLogged())
 
 
@@ -33,22 +32,23 @@ export class UserNavbarComponent implements OnInit {
 
     this.isLogged = this.loginService.loggedIn$;
 
-    this.userId = this.loginService.getUserLoggedId();
-    console.log('the User ID from Navbar', this.userId)
+    //  this.loginService.getUserLoggedId();
+    //  console.log('the User ID from Navbar', this.userId)
 
     this.getDetails();
   }
 
 
   get menuItems() {
+    const userId = this.loginService.getUserLoggedId()
+    const userMaterialPath = `/users/${userId}/material`;
     return [
     { name: 'Home', path: '/users/home' },
-    { name: 'Study Material', path: `/users/${this.userId}/material` },
+    { name: 'Study Material', path: userMaterialPath  },
     { name: 'Quiz', path: '/users/quiz' },
     { name: 'Contact' }
     ]
   };
-
 
   getDetails() {
     this.loginService.users$.subscribe({
