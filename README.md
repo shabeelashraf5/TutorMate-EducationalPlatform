@@ -1,20 +1,20 @@
-# TutorMe
+# TutorMate - Educational Platform 📚
 
 **TutorMe** is an educational platform that connects students with a dedicated tutor. Students can access a variety of resources such as quizzes, topic-based questions, and exam papers tailored to their classes. The tutor can upload and manage these materials to assist students in their preparation. The project is currently in progress, with a focus on building features like user registration, content management, and secure communication.
 
-## Technologies Used
+## Technologies Used ⚙️
 
-- **Backend**: NestJS, Mongoose (MongoDB), JWT authentication
-- **Frontend**: Angular, Tailwind CSS
-- **Tools**: GitHub, Postman
+- **Backend**: NestJS, Mongoose (MongoDB), JWT authentication 🔐
+- **Frontend**: Angular, Tailwind CSS 🎨
+- **Tools**: GitHub, Postman 💻
 
-## Features
+## Features ✨
 
-- User registration and authentication
-- Upload and management of class materials (quizzes, topics, exams)
-- Secure communication between students and the tutor
+- **User Registration and Authentication** 🔑
+- **Upload and Management of Class Materials** (quizzes, topics, exams) 📚
+- **Secure Communication** between students and the tutor 💬
 
-## Installation
+## Installation 🛠️
 
 1. Clone the repository:  
    `git clone https://github.com/shabeelashraf5/TutorMe.git`
@@ -27,6 +27,4 @@
    - For backend: `npm run start`
    - For frontend: `ng serve`
 
-## License
 
-This project is licensed under the MIT License.

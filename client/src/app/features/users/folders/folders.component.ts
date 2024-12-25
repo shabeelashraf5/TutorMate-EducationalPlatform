@@ -29,7 +29,7 @@ export class FoldersComponent implements OnInit {
   }
 
   loadFolder() {
-   // this.userId = this.loginService.getUserLoggedId()
+   
     this.folderService.displayUserFolder(this.userId).subscribe({
       next: (response) => {
         console.log('API Response:', response);
