@@ -94,6 +94,30 @@
               >
             </div>
           </div>
+          <div class="relative z-0 w-full mb-5 group">
+            <input
+              type="file"
+              name="files"
+              formControlName="files"
+              (change)="onFileChange($event)"
+              id="files"
+              multiple
+              class="block w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none"
+            />
+            <label for="files" class="block mt-2 text-sm text-gray-500">
+              Upload Files Image (Optional)
+            </label>
+          
+            <!-- Multiple Image Previews -->
+            <div class="grid grid-cols-3 gap-4 mt-4">
+              <img
+                *ngFor="let preview of previewImages"
+                [src]="preview"
+                alt="Uploaded Image"
+                class="w-20 h-20 rounded-full"
+              />
+            </div>
+          </div>
           <button
             type="submit"
             class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

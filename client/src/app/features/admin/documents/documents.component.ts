@@ -21,6 +21,8 @@ export class DocumentsComponent implements OnInit {
   isModalOpen = false;
   folderDetails: Folder[] = [];
   formData!: FormGroup;
+  previewImages: string[] = [];
+  selectedFiles: File[] = [];
 
   folderService = inject(AdfolderService);
   router = inject(Router);
@@ -39,10 +41,31 @@ export class DocumentsComponent implements OnInit {
     });
   }
 
+  onFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      this.selectedFiles = Array.from(input.files); 
+
+      Array.from(input.files).forEach((file) => {
+        this.selectedFiles.push(file);
+
+        const reader = new FileReader();
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+          if (e.target?.result) {
+            this.previewImages.push(e.target.result as string);
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  }
+
   myForm() {
     this.formData = new FormGroup({
       title: new FormControl('', [Validators.required]),
       class: new FormControl('', [Validators.required]),
+      files: new FormControl('')
     });
   }
 
@@ -67,11 +90,20 @@ export class DocumentsComponent implements OnInit {
 
   createFolder() {
     if (this.formData.invalid) {
-      console.log('Form is invalid');
+      console.log('Invalid form data:', this.formData.value);
       return;
     }
 
-    const folderData: Folder = this.formData.value;
+    const folderData = new FormData();
+folderData.append('title', this.formData.get('title')?.value || '');
+folderData.append('class', this.formData.get('class')?.value || '');
+
+this.selectedFiles.forEach((file, index) => {
+  folderData.append(`files`, file, file.name);
+});
+
+this.selectedFiles.forEach((file) => console.log('File:', file));
+console.log('Form Data:', folderData);
 
     this.folderService.createFolder(folderData).subscribe({
       next: (response) => {
@@ -79,9 +111,9 @@ export class DocumentsComponent implements OnInit {
         this.loadFolder();
         this.isModalOpen = false;
         console.log(response);
-      },
+      }, 
       error: (error) => {
-        console.log(error);
+        console.error('Error Response:', error.error || error.message);
       },
     });
   }

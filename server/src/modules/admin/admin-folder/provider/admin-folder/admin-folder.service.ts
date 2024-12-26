@@ -6,14 +6,23 @@ import { FolderDto } from '../../dto/folder.dto';
 export class AdminFolderService {
   constructor(private readonly folderService: FolderService) {}
 
-  async createFolder(folderDto: FolderDto) {
-    const folder = await this.folderService.createFolder(folderDto);
-
-    return {
-      success: true,
-      message: 'Folder Created',
-      folderDetails: folder,
-    };
+  async createFolder(folderDto: FolderDto, files: Express.Multer.File[]) {
+    try {
+      const filePaths =
+        files?.map((file) => `/uploads/images/${file.filename}`) || [];
+      const folder = await this.folderService.createFolder({
+        ...folderDto,
+        files: filePaths,
+      });
+      return {
+        success: true,
+        message: 'Folder Created',
+        folderDetails: folder,
+      };
+    } catch (error) {
+      console.error('Error:', error.message);
+      throw new Error('Error creating folder: ' + error.message);
+    }
   }
 
   async displayFolder(folderDto: FolderDto) {

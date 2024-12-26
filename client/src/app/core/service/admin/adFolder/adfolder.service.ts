@@ -11,8 +11,8 @@ export class AdfolderService {
 
   constructor(private http: HttpClient) {}
 
-  createFolder(folder: Folder) {
-    return this.http.post(`${this.apiUrl}/documents`, folder);
+  createFolder(form: FormData) {
+    return this.http.post(`${this.apiUrl}/documents`, form);
   }
 
   displayFolder(): Observable<any> {
