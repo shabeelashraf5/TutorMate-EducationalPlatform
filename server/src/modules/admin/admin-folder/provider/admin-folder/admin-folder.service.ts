@@ -7,9 +7,11 @@ export class AdminFolderService {
   constructor(private readonly folderService: FolderService) {}
 
   async createFolder(folderDto: FolderDto, files: Express.Multer.File[]) {
+    console.log(files);
     try {
-      const filePaths =
-        files?.map((file) => `/uploads/images/${file.filename}`) || [];
+      const filePaths = files?.map(
+        (file) => `/uploads/images/${file.filename}`,
+      );
       const folder = await this.folderService.createFolder({
         ...folderDto,
         files: filePaths,

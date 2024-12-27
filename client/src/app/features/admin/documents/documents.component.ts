@@ -43,23 +43,28 @@ export class DocumentsComponent implements OnInit {
 
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
-
+  
     if (input.files && input.files.length > 0) {
-      this.selectedFiles = Array.from(input.files); 
-
-      Array.from(input.files).forEach((file) => {
-        this.selectedFiles.push(file);
-
-        const reader = new FileReader();
-        reader.onload = (e: ProgressEvent<FileReader>) => {
-          if (e.target?.result) {
-            this.previewImages.push(e.target.result as string);
-          }
-        };
-        reader.readAsDataURL(file);
+      // Convert input.files to an array
+      const newFiles = Array.from(input.files);
+  
+      // Add new files to selectedFiles without duplicates
+      newFiles.forEach((file) => {
+        if (!this.selectedFiles.some((selectedFile) => selectedFile.name === file.name)) {
+          this.selectedFiles.push(file);
+  
+          const reader = new FileReader();
+          reader.onload = (e: ProgressEvent<FileReader>) => {
+            if (e.target?.result) {
+              this.previewImages.push(e.target.result as string);
+            }
+          };
+          reader.readAsDataURL(file);
+        }
       });
     }
   }
+  
 
   myForm() {
     this.formData = new FormGroup({
@@ -98,7 +103,7 @@ export class DocumentsComponent implements OnInit {
 folderData.append('title', this.formData.get('title')?.value || '');
 folderData.append('class', this.formData.get('class')?.value || '');
 
-this.selectedFiles.forEach((file, index) => {
+this.selectedFiles.forEach((file) => {
   folderData.append(`files`, file, file.name);
 });
 

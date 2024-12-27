@@ -10,9 +10,9 @@
 
   <!-- Main modal -->
   <div
-    [class.hidden]="!isModalOpen"
-    [attr.aria-hidden]="!isModalOpen ? 'true' : null"
-    [attr.inert]="!isModalOpen ? '' : null"
+  [class.hidden]="!isModalOpen"
+  [attr.aria-hidden]="!isModalOpen"
+  [attr.inert]="!isModalOpen ? true : null"
     id="crud-modal"
     tabindex="-1"
     aria-hidden="true"
@@ -110,12 +110,19 @@
           
             <!-- Multiple Image Previews -->
             <div class="grid grid-cols-3 gap-4 mt-4">
-              <img
+              <!-- <img
                 *ngFor="let preview of previewImages"
                 [src]="preview"
                 alt="Uploaded Image"
                 class="w-20 h-20 rounded-full"
-              />
+              /> -->
+              <div
+              *ngFor="let file of selectedFiles"
+              class="flex items-center space-x-2 bg-gray-100 p-2 rounded-md"
+            >
+              <i class="fas fa-file text-gray-500 text-lg"></i> <!-- Font Awesome File Icon -->
+              <span class="text-sm text-gray-700 truncate">{{ file.name }}</span>
+            </div>
             </div>
           </div>
           <button
