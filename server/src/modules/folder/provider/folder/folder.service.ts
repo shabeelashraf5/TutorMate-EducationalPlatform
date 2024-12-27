@@ -28,4 +28,14 @@ export class FolderService {
 
     return { user, folder };
   }
+
+  async getFolderFiles(folderId: string) {
+    const folderFiles = this.folderModel.findById(folderId).exec();
+
+    if (!folderFiles) {
+      throw new Error('Folder not found');
+    }
+
+    return folderFiles;
+  }
 }

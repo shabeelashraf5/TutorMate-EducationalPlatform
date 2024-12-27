@@ -18,6 +18,7 @@ import { LoginService } from '../../../core/service/users/login/login.service';
 export class FoldersComponent implements OnInit {
   folderDetails: Folder[] = [];
   userId!: string
+  folderId!: string;
 
   constructor(private folderService: UserfolderService, private loginService: LoginService, private route: ActivatedRoute) {}
 
@@ -27,6 +28,7 @@ export class FoldersComponent implements OnInit {
       this.loadFolder();
     });
   }
+
 
   loadFolder() {
    

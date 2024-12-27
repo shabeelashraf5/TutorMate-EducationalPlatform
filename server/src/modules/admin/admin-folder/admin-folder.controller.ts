@@ -43,4 +43,10 @@ export class AdminFolderController {
     );
     return response;
   }
+
+  @Get('users/:folderId/questions')
+  async getFolderFiles(@Param('folderId') folderId: string) {
+    console.log('Folder ID:', folderId);
+    return await this.adminFolder.displayFolderFiles(folderId);
+  }
 }

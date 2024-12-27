@@ -4,7 +4,7 @@
   class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5"
 >
   <div *ngFor="let list of folderDetails" class="cursor-pointer text-center">
-    <a routerLink="/users/questions" role="button">
+    <a [routerLink]="['/users', list._id, 'questions']" role="button">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="w-16 h-16 mx-auto"

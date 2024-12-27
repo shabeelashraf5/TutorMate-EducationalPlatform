@@ -14,6 +14,7 @@ import { QuizComponent } from './features/users/quiz/quiz.component';
 import { StudymaterialComponent } from './features/users/studymaterial/studymaterial.component';
 import { FoldersComponent } from './features/users/folders/folders.component';
 import { DocumentsComponent } from './features/admin/documents/documents.component';
+import { FilesComponent } from './features/users/files/files.component';
 
 export const routes: Routes = [
   {
@@ -40,7 +41,7 @@ export const routes: Routes = [
         canActivate: [loggedInGuard],
       },
       {
-        path: 'questions',
+        path: ':folderId/questions',
         component: StudymaterialComponent,
         canActivate: [loggedInGuard],
       },

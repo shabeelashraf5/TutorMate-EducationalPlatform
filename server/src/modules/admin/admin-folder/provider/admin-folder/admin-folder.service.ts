@@ -9,9 +9,7 @@ export class AdminFolderService {
   async createFolder(folderDto: FolderDto, files: Express.Multer.File[]) {
     console.log(files);
     try {
-      const filePaths = files?.map(
-        (file) => `/uploads/images/${file.filename}`,
-      );
+      const filePaths = files?.map((file) => `${file.originalname}`);
       const folder = await this.folderService.createFolder({
         ...folderDto,
         files: filePaths,
@@ -45,6 +43,16 @@ export class AdminFolderService {
       success: true,
       message: 'The folder has been displayed as per classes',
       folder: userFolder,
+    };
+  }
+
+  async displayFolderFiles(folderId: string) {
+    const files = await this.folderService.getFolderFiles(folderId);
+
+    return {
+      success: true,
+      message: 'Folder files retireved seccessfully',
+      file: files,
     };
   }
 }
