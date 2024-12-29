@@ -1,4 +1,12 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsArray,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
+import { FileDetailDto } from './fileDetail.dto';
 
 export class FolderDto {
   @IsString()
@@ -9,6 +17,12 @@ export class FolderDto {
   @IsNotEmpty()
   class: string;
 
+  // @IsOptional()
+  // files?: string[];
+
   @IsOptional()
-  files?: string[];
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => FileDetailDto)
+  files?: FileDetailDto[];
 }

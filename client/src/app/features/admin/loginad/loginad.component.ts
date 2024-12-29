@@ -10,6 +10,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../../../shared/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-loginad',
@@ -74,7 +75,7 @@ export class LoginadComponent implements OnInit {
 
   adminLogOut() {
     this.adminLoginService.adminLoggedOut();
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin-login']);
     this.isAdminDropdownOpen = false;
   }
 }

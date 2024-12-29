@@ -29,7 +29,7 @@ export class AdminlayoutComponent implements OnInit {
 
   adminLogOut() {
     this.adminLoginService.adminLoggedOut();
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin-login']);
     this.isAdminDropdownOpen = false;
   }
 }

@@ -16,8 +16,8 @@ export const adminloggedInGuard: CanActivateFn = (route, state) => {
     console.log('Admin is logged in, allowing access to admin route.');
     return true;
   } else {
-    console.log('Admin is not logged in, redirecting to /admin/login');
-    router.navigate(['/admin/login']);
+    console.log('Admin is not logged in, redirecting to /admin-login');
+    router.navigate(['/admin-login']);
 
     return false;
   }

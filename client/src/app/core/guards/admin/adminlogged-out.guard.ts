@@ -18,7 +18,7 @@ export const adminloggedOutGuard: CanActivateFn = (route, state) => {
     }
     return false;
   } else {
-    console.log('Token does not exist, allowing access to /admin/login');
+    console.log('Token does not exist, allowing access to /admin-login');
     return true;
   }
 };

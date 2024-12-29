@@ -9,10 +9,15 @@ export class Folder extends Document {
   @Prop({ type: String, isRequired: true })
   class: string;
 
+  // @Prop({
+  //   type: [String],
+  // })
+  // files: string[];
+
   @Prop({
-    type: [String],
+    type: [{ path: String, originalName: String }],
   })
-  files: string[];
+  files: { path: string; originalName: string }[];
 }
 
 export const FolderSchema = SchemaFactory.createForClass(Folder);

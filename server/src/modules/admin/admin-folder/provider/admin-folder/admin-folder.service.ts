@@ -9,10 +9,14 @@ export class AdminFolderService {
   async createFolder(folderDto: FolderDto, files: Express.Multer.File[]) {
     console.log(files);
     try {
-      const filePaths = files?.map((file) => `${file.originalname}`);
+      //const filePaths = files?.map((file) => `${file.originalname}`);
+      const fileDetails = files?.map((file) => ({
+        path: file.path,
+        originalName: file.originalname,
+      }));
       const folder = await this.folderService.createFolder({
         ...folderDto,
-        files: filePaths,
+        files: fileDetails,
       });
       return {
         success: true,

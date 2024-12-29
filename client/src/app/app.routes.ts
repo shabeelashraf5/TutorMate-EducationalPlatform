@@ -15,6 +15,7 @@ import { StudymaterialComponent } from './features/users/studymaterial/studymate
 import { FoldersComponent } from './features/users/folders/folders.component';
 import { DocumentsComponent } from './features/admin/documents/documents.component';
 import { FilesComponent } from './features/users/files/files.component';
+import { AdminloginComponent } from './features/auth/adminlogin/adminlogin.component';
 
 export const routes: Routes = [
   {
@@ -49,15 +50,21 @@ export const routes: Routes = [
   },
 
   {
+    path: 'admin-login',
+    component: AdminloginComponent,
+    canActivate: [adminloggedOutGuard],
+  },
+
+  {
     path: 'admin',
     component: AdminlayoutComponent,
     children: [
       //{ path: '', redirectTo: 'login', pathMatch: 'full' },
-      {
-        path: 'login',
-        component: LoginadComponent,
-        canActivate: [adminloggedOutGuard],
-      },
+      // {
+      //   path: 'login',
+      //   component: LoginadComponent,
+      //   canActivate: [adminloggedOutGuard],
+      // },
       {
         path: 'dashboard',
         component: DashboardComponent,
