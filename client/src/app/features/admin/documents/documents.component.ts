@@ -23,7 +23,11 @@ export class DocumentsComponent implements OnInit {
   formData!: FormGroup;
   previewImages: string[] = [];
   selectedFiles: File[] = [];
-
+  showDialog: boolean = false;
+  dialogTitle: string = '';
+  dialogMessage: string = '';
+  actionType: string = '';
+  
   folderService = inject(AdfolderService);
   router = inject(Router);
 
@@ -37,6 +41,7 @@ export class DocumentsComponent implements OnInit {
       next: (response) => {
         this.folderDetails = response.folder;
         console.log(this.folderDetails);
+        console.log('Files:', this.folderDetails.map(folder => folder.files))
       },
     });
   }
@@ -121,5 +126,29 @@ console.log('Form Data:', folderData);
         console.error('Error Response:', error.error || error.message);
       },
     });
+  }
+
+  downloadPDF(file: string) {
+    const fileUrl = `http://localhost:3000/${file}`;  // Adjust the URL to your backend file path
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = file;
+    link.click();
+  }
+
+  openDialog(action: string) {
+    this.actionType = action;
+    this.dialogTitle = `${action.charAt(0).toUpperCase() + action.slice(1)} Confirmation`;
+    this.dialogMessage = `Are you sure you want to ${action} this user?`;
+    this.showDialog = true;
+  }
+
+  closeDialog() {
+    this.showDialog = false;
+  }
+
+  confirmAction() {
+    console.log(`User has confirmed to ${this.actionType} the user`);
+    this.closeDialog();
   }
 }

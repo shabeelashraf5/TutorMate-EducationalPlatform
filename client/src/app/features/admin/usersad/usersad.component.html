@@ -1,9 +1,7 @@
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-  <div
-    class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white"
-  >
+  <div class="pb-4 bg-white dark:bg-transparent">
     <label for="table-search" class="sr-only">Search</label>
-    <div class="relative">
+    <div class="relative mt-1">
       <div
         class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none"
       >
@@ -25,17 +23,17 @@
       </div>
       <input
         type="text"
-        id="table-search-users"
-        class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Search for users"
+        id="table-search"
+        class="block pt-2 ps-10 text-sm text-neutral-900 border border-gray-300 rounded-lg w-80 bg-neutral-300 focus:ring-green-600 focus:border-green-600 dark:border-gray-600 dark:placeholder-neutral-400 dark:focus:ring-green-600 dark:focus:border-green-600"
+        placeholder="Search for items"
       />
     </div>
   </div>
   <table
-    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+    class="w-full border border-neutral-700 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
   >
     <thead
-      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      class="text-xs uppercase bg-transparent text-neutral-700"
     >
       <tr>
         <th scope="col" class="px-6 py-3">Name</th>
@@ -47,7 +45,7 @@
     <tbody>
       <tr
         *ngFor="let users of userDetails"
-        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        class="border bg-transparent border-neutral-700 hover:bg-neutral-300"
       >
         <th
           scope="row"
@@ -59,13 +57,13 @@
             alt="{{ users.fname }}'s image"
           />
           <div class="ps-3">
-            <div class="text-base font-semibold">
+            <div class="text-neutral-700 font-semibold">
               {{ users.fname }} <span>{{ users.lname }}</span>
             </div>
-            <div class="font-normal text-gray-500">{{ users.email }}</div>
+            <div class="font-normal text-neutral-400">{{ users.email }}</div>
           </div>
         </th>
-        <td class="px-6 py-4">{{ users.class }}</td>
+        <td class="px-6 py-4 text-neutral-700">{{ users.class }}</td>
         <td class="px-6 py-4">
           <div class="flex items-center">
             <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>
