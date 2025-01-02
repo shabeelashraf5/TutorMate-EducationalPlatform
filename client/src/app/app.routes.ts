@@ -16,6 +16,10 @@ import { FoldersComponent } from './features/users/folders/folders.component';
 import { DocumentsComponent } from './features/admin/documents/documents.component';
 import { FilesComponent } from './features/users/files/files.component';
 import { AdminloginComponent } from './features/auth/adminlogin/adminlogin.component';
+import { QuizadComponent } from './features/admin/quizad/quizad.component';
+import { AttendanceadComponent } from './features/admin/attendancead/attendancead.component';
+import { PerformanceadComponent } from './features/admin/performancead/performancead.component';
+import { InboxComponent } from './features/admin/inbox/inbox.component';
 
 export const routes: Routes = [
   {
@@ -79,6 +83,30 @@ export const routes: Routes = [
       {
         path: 'documents',
         component: DocumentsComponent,
+        canActivate: [adminloggedInGuard],
+      },
+
+      {
+        path: 'quiz',
+        component: QuizadComponent,
+        canActivate: [adminloggedInGuard],
+      },
+
+      {
+        path: 'attendance',
+        component: AttendanceadComponent,
+        canActivate: [adminloggedInGuard],
+      },
+
+      {
+        path: 'performance',
+        component: PerformanceadComponent,
+        canActivate: [adminloggedInGuard],
+      },
+
+      {
+        path: 'inbox',
+        component: InboxComponent,
         canActivate: [adminloggedInGuard],
       },
 
