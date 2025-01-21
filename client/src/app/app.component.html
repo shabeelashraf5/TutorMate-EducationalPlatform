@@ -1,28 +1,6 @@
 <div class="flex flex-col bg-customColor min-h-screen">
-  <!-- <app-user-navbar></app-user-navbar> -->
 
-  <!-- <div *ngIf="isLogged | async">
-    <app-user-navbar
-      [menuItems]="menuItems"
-      [isLogged]="isLogged"
-      [isDropdownOpen]="isDropdownOpen"
-      [toggleDropdown]="toggleDropdown"
-      [logOut]="logOut"
-      [isFname]="isFname"
-      [isLname]="isLname"
-      [isEmail]="isEmail"
-    ></app-user-navbar>
-  </div> -->
-
-  <!-- <div >
-    <app-admin-navbar
-      
-      [adminLogOut]="adminLogOut"
-    >
-    </app-admin-navbar>
-  </div> -->
-
-  <div class="flex-grow">
+  <div class="flex-grow overflow-auto">
     <router-outlet></router-outlet>
   </div>
 </div>

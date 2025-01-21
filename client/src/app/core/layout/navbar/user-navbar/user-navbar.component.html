@@ -1,5 +1,5 @@
 
-<nav class="bg-white dark:bg-customColor">
+<nav class="fixed w-full bg-white dark:bg-customColor border-b border-neutral-700 z-50">
   <div
     class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
   >
@@ -8,8 +8,8 @@
       src="4.png" class="h-15 w-20"
       />
       <span
-        class="self-center text-2xl font-semibold whitespace-nowrap text-greenColor mt-10"
-        >Tutor<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-neutral-700">Mate</span></span
+        class="self-center text-2xl md:text-4xl font-semibold whitespace-nowrap text-greenColor mt-5"
+        >Tutor<span class="self-center text-2xl md:text-4xl font-semibold whitespace-nowrap dark:text-neutral-700">Mate</span></span
       >
     </a>
     <div
@@ -17,7 +17,7 @@
     >
       <button
         type="button"
-        class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+        class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 mt-5"
         id="user-menu-button"
         aria-expanded="false"
         (click)="toggleDropdown()"
@@ -90,7 +90,7 @@
       <button
         data-collapse-toggle="navbar-user"
         type="button"
-        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 mt-5"
         aria-controls="navbar-user"
         aria-expanded="false"
       >
@@ -123,7 +123,7 @@
         <li *ngFor="let items of menuItems">
           <a
             [routerLink]="items.path"
-            class="block text-xl py-2 px-3 text-neutral-700 hover:text-greenColor font-semibold bg-grey-700 rounded md:bg-transparent md:text-grey-700 md:p-0 md:dark:text-grey-500 cursor-pointer"
+            class="block text-xl py-2 px-3 text-neutral-700 hover:text-greenColor font-semibold bg-grey-700 rounded md:bg-transparent md:text-grey-700 md:p-0 md:dark:text-grey-500 cursor-pointer mt-5"
             aria-current="page"
             >{{ items.name }}</a
           >
