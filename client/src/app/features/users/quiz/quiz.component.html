@@ -1,2 +1,26 @@
 <app-user-navbar></app-user-navbar>
-<p>quiz works!</p>
+<div *ngIf="!showResults; else results" class="mt-32">
+    <h2>Question {{ currentQuestionIndex + 1 }}/{{ questions.length }}</h2>
+    <p>{{ questions[currentQuestionIndex].question }}</p>
+    <ul>
+      <li
+        *ngFor="let option of questions[currentQuestionIndex]?.options; let i = index"
+        (click)="selectAnswer(i)"
+        class="option"
+      >
+        {{ option }}
+      </li>
+    </ul>
+  </div>
+  
+ 
+  <ng-template #results>
+    <div class="mt-32">
+    <h2>Your Score: {{ calculateScore() }}/{{ questions.length }}</h2>
+    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" 
+    (click)="currentQuestionIndex = 0; showResults = false; userAnswers = []">
+      Retake Quiz
+    </button>
+</div>
+  </ng-template>
+
