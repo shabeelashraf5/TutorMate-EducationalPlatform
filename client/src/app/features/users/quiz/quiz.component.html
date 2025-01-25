@@ -6,7 +6,7 @@
     <li
       *ngFor="let option of questions[currentQuestionIndex]?.options; let i = index"
       (click)="selectAnswer(i)"
-      class="option cursor-pointer p-4 border rounded-lg hover:bg-blue-100 dark:hover:bg-gray-800 transition-colors duration-300 text-lg"
+      class="option cursor-pointer p-4 border rounded-lg hover:bg-blue-100 dark:hover:bg-neutral-400 transition-colors duration-300 text-lg"
     >
       {{ option }}
     </li>
